@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { fetchAllCategories } from "../requests/fetchs";
+import { fetchAllCategories } from "../services/fetchs";
 
 const Home = () => {
   useEffect(() => {
