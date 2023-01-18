@@ -11,6 +11,7 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 2vh;
+  background-color: #ffffff;
 
   & img {
     height: 90%;
