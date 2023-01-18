@@ -3,5 +3,5 @@ export const fetchAllCategories = async () => {
     .then((response) => response.json())
     .then((response) => response.meals);
 
-  console.log(fetchAPI);
+  return fetchAPI
 };
