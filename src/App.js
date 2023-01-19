@@ -1,12 +1,15 @@
 import Router from "./routes";
 import "./App.css";
 import FilterProvider from "./context/FilterContext";
+import MealsProvider from "./context/MealsContext";
 
 function App() {
   return (
-    <FilterProvider>
-      <Router />
-    </FilterProvider>
+    <MealsProvider>
+      <FilterProvider>
+        <Router />
+      </FilterProvider>
+    </MealsProvider>
   );
 }
 
