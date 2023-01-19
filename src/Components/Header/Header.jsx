@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { SearchIcon } from "../../assets/icons";
+import { FilterContext } from "../../context/FilterContext";
 import { HeaderWrapper } from "./HeaderStyles";
 
 const INITIAL_STATE = {
@@ -10,6 +11,11 @@ const INITIAL_STATE = {
 
 export const Header = () => {
   const [filter, setFilter] = useState(INITIAL_STATE);
+  const { setActiveFilter } = useContext(FilterContext);
+
+  useEffect(() => {
+    return setActiveFilter(filter);
+  }, [])
 
   const onFilterChange = ({ target }) => {
     const { name, value } = target;
@@ -20,12 +26,14 @@ export const Header = () => {
     });
   };
 
+  const onFilterButtonClick = () => {
+    setActiveFilter(filter);
+  };
+
   return (
     <HeaderWrapper>
       <select name="filterClass" onChange={(e) => onFilterChange(e)}>
-        <option value="name" defaultValue>
-          name
-        </option>
+        <option value="name" defaultValue>name</option>
         <option value="first-letter">first letter</option>
         <option value="category">category</option>
         <option value="area">area</option>
@@ -39,7 +47,7 @@ export const Header = () => {
         type="text"
         placeholder="Big Mc"
       />
-      <button type="button">
+      <button onClick={() => onFilterButtonClick()} type="button">
         <SearchIcon />
       </button>
     </HeaderWrapper>

@@ -1,8 +1,13 @@
 import Router from "./routes";
-import './App.css';
+import "./App.css";
+import FilterProvider from "./context/FilterContext";
 
 function App() {
-  return <Router />;
+  return (
+    <FilterProvider>
+      <Router />
+    </FilterProvider>
+  );
 }
 
 export default App;
