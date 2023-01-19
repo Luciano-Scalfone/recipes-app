@@ -23,7 +23,6 @@ export const HeaderWrapper = styled.header`
 
   & select, button {
     background-color: rgba(245, 245, 245);
-    width: 5%;
     height: 50%;
     border-radius: 5px 0 0 5px;
     border: none;
