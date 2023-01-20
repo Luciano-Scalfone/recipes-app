@@ -1,27 +1,17 @@
-// export const fetchURLSetter = (filterClass, filterParams, queryParams) => {
-//   switch (filterClass) {
-//     case "name":
-//       filterParams = "search";
-//       queryParams = "s";
-//       break;
-//     case "first-letter":
-//       filterParams = "search";
-//       queryParams = "f";
-//       break;
-//     case "ingredients":
-//       filterParams = "filter";
-//       queryParams = "i";
-//       break;
-//     case "category":
-//       filterParams = "filter";
-//       queryParams = "c";
-//       break;
-//     case "area":
-//       filterParams = "filter";
-//       queryParams = "a";
-//       break;
-//   }
-// };
+export const fetchURLSetter = (filterClass) => {
+  switch (filterClass) {
+    case "name":
+      return { filterParams: "search", queryParams: "s" };
+    case "first-letter":
+      return { filterParams: "search", queryParams: "f" };
+    case "ingredient":
+      return { filterParams: "filter", queryParams: "i" };
+    case "category":
+      return { filterParams: "filter", queryParams: "c" };
+    case "area":
+      return { filterParams: "filter", queryParams: "a" };
+  }
+};
 
 export const searchParamSetter = (filterClass, filterBy) => {
   return filterClass === "first-letter" && filterBy.length > 1
