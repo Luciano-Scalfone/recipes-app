@@ -1,6 +1,20 @@
+import { GithubIcon } from "../../assets/Icons";
 import { FooterWrapper } from "./FooterStyles";
 
 export const Footer = () => {
-
-  return <FooterWrapper>Rodapé</FooterWrapper>;
+  // const github = iconGithub();
+  return (
+    <FooterWrapper>
+      <h3>
+        Powered by{" "}
+        <a href="https://github.com/Luciano-Scalfone" target="_blank">
+          Luciano Scalfone <GithubIcon />
+        </a>{" "}
+        and{" "}
+        <a href="https://github.com/Lucas-kechi" target="_blank">
+          Lucas Kechi <GithubIcon />
+        </a>
+      </h3>
+    </FooterWrapper>
+  );
 };
