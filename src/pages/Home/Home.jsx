@@ -6,7 +6,7 @@ import { HomeWrapper } from "./HomeStyles";
 
 const Home = () => {
   return (
-    <HomeWrapper>
+    <HomeWrapper data-testid="home-component">
       <Header />
       <Body />
       <Footer />
