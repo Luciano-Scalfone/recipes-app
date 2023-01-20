@@ -1,8 +1,11 @@
+import { useContext } from "react";
+import { MealsContext } from "../../context/MealsContext";
 import { Card } from "../Cards/Cards";
 import { BodyWrapper } from "./BodyStyles";
 
-export const Body = ({ meals }) => {
-  console.log(meals);
+export const Body = () => {
+  const { meals } = useContext(MealsContext);
+
   return (
     <BodyWrapper>
       {meals.map((meal) => (
