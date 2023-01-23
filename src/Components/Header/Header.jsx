@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
-import { SearchIcon } from "../../assets/icons";
+import { SearchIcon } from "../../assets/Icons";
 import { FilterContext } from "../../context/FilterContext";
 import { HeaderWrapper } from "./HeaderStyles";
 

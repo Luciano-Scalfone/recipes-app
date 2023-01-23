@@ -1,4 +1,4 @@
-import { GithubIcon } from "../../assets/Icons";
+import { GithubIcon } from '../../assets/Icons';
 import { FooterWrapper } from "./FooterStyles";
 
 export const Footer = () => {
