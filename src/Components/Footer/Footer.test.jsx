@@ -1,17 +1,23 @@
-import { render } from "@testing-library/react"
-import FilterProvider from "../../context/FilterContext"
-import MealsProvider from "../../context/MealsContext"
-import { Footer } from "./Footer"
+import { render } from "@testing-library/react";
+import { Footer } from "./Footer";
 
 describe("Footer Component", () => {
-  test('Should have a h3 element', () => {
-    const FOOTER_COMPONENT = render(
-      <MealsProvider>
-        <FilterProvider>
-          <Footer />
-        </FilterProvider>
-      </MealsProvider>
-    )
-    console.log(FOOTER_COMPONENT)
-  })
-})
+  let footerElement;
+
+  beforeEach(() => {
+    const { container } = render(<Footer />);
+    footerElement = container;
+  });
+
+  test("Should have a h3 element", () => {
+    const h3Element = footerElement.querySelector("h3");
+
+    expect(h3Element).toBeInTheDocument();
+  });
+
+  test("Should have two 'a' element", () => {
+    const aElement = footerElement.querySelectorAll("a");
+
+    expect(aElement.length).toBe(3);
+  });
+});

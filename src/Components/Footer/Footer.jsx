@@ -2,7 +2,6 @@ import { GithubIcon } from '../../assets/Icons';
 import { FooterWrapper } from "./FooterStyles";
 
 export const Footer = () => {
-  // const github = iconGithub();
   return (
     <FooterWrapper>
       <h3>
