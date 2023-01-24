@@ -1,6 +1,6 @@
 import { CardWrapper } from "./CardStyles";
 
-export const Card = ({ name, imageSrc }) => {
+export const Cards = ({ name, imageSrc }) => {
   return (
     <CardWrapper>
       <img src={imageSrc} alt={`${name} meal`} />

@@ -18,6 +18,6 @@ describe("Footer Component", () => {
   test("Should have two 'a' element", () => {
     const aElement = footerElement.querySelectorAll("a");
 
-    expect(aElement.length).toBe(3);
+    expect(aElement).toHaveLength(2);
   });
 });

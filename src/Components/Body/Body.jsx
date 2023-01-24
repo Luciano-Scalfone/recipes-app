@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { MealsContext } from "../../context/MealsContext";
-import { Card } from "../Cards/Cards";
+import { Cards } from "../Cards/Cards";
 import { BodyWrapper } from "./BodyStyles";
 
 export const Body = () => {
@@ -9,7 +9,7 @@ export const Body = () => {
   return (
     <BodyWrapper>
       {meals.map((meal) => (
-        <Card name={meal.name} key={meal.id} imageSrc={meal.image} />
+        <Cards name={meal.name} key={meal.id} imageSrc={meal.image} />
       ))}
     </BodyWrapper>
   );
