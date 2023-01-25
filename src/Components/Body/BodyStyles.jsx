@@ -8,4 +8,5 @@ export const BodyWrapper = styled.main`
   padding: 5vh;
   align-items: center;
   justify-content: center;
+  min-height: 85vh;
 `;

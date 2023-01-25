@@ -1,21 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { SearchIcon } from "../../assets/Icons";
 import { FilterContext } from "../../context/FilterContext";
+import { FILTER_INITIAL_STATE } from "../../interfaces/filterInitialState";
 import { HeaderWrapper } from "./HeaderStyles";
 
-const INITIAL_STATE = {
-  filterClass: "name",
-  filterBy: "",
-};
-
 export const Header = () => {
-  const [filter, setFilter] = useState(INITIAL_STATE);
+  const [filter, setFilter] = useState(FILTER_INITIAL_STATE);
   const { setActiveFilter } = useContext(FilterContext);
-
-  useEffect(() => {
-    return setActiveFilter(filter);
-  }, [])
 
   const onFilterChange = ({ target }) => {
     const { name, value } = target;

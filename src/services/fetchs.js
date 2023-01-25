@@ -8,7 +8,8 @@ export const fetchAllCategories = async (filterClass, filterBy) => {
     `https://www.themealdb.com/api/json/v1/1/${filterParams}.php?${queryParams}=${searchTerm}`
   )
     .then((response) => response.json())
-    .then((response) => response.meals);
+    .then((response) => response.meals)
+    .catch((error) => console.log("Erro na Api", error));
 
   return fetchAPI;
 };

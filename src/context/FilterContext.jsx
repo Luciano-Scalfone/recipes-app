@@ -1,20 +1,21 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { fetchAllCategories } from "../services/fetchs";
 import { MealsContext } from "./MealsContext";
+import { FILTER_INITIAL_STATE } from "../interfaces/filterInitialState";
 
 export const FilterContext = createContext();
 
 const FilterProvider = ({ children }) => {
-  const [activeFilter, setActiveFilter] = useState();
+  const [activeFilter, setActiveFilter] = useState(FILTER_INITIAL_STATE);
   const { setMeals } = useContext(MealsContext);
 
   useEffect(() => {
     if (activeFilter) {
-      const { filterClass, filterBy } = activeFilter;
-      const PROMISSE_API = fetchAllCategories(filterClass, filterBy);
+      (async () => {
+        const { filterClass, filterBy } = activeFilter;
+        const PROMISSE_API = await fetchAllCategories(filterClass, filterBy);
 
-      PROMISSE_API.then((data) => {
-        const FILTERED_MEAL = data.map((filteredMeal) => {
+        const FILTERED_MEAL = PROMISSE_API.map((filteredMeal) => {
           return {
             id: filteredMeal.idMeal,
             name: filteredMeal.strMeal,
@@ -23,7 +24,7 @@ const FilterProvider = ({ children }) => {
         });
 
         setMeals(FILTERED_MEAL);
-      }).catch((error) => console.log("Erro na Api", error));
+      })();
     }
   }, [activeFilter]);
 
