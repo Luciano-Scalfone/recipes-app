@@ -1,12 +1,18 @@
+import React from "react";
 import { render } from "@testing-library/react";
 import { Cards } from "./Cards";
 
 describe("Cards Component", () => {
   let CardsElement;
+  let getText;
 
   beforeEach(() => {
-    const { container } = render(<Cards />);
+    const { container, getByText } = render(
+      <Cards name="some_name" imageSrc="some_url" />
+    );
+
     CardsElement = container;
+    getText = getByText;
   });
 
   test("Should have a div element", () => {
@@ -25,5 +31,13 @@ describe("Cards Component", () => {
     const h2Element = CardsElement.querySelector("div h2:last-child");
 
     expect(h2Element).toBeDefined();
+  });
+
+  test("If Cards component rendered elements with props", () => {
+    const nameProps = getText("some_name");
+    const imageSrc = CardsElement.querySelector('[src="some_url"]');
+
+    expect(imageSrc).toBeInTheDocument();
+    expect(nameProps).toBeInTheDocument();
   });
 });

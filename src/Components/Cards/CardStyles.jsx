@@ -12,6 +12,12 @@ export const CardWrapper = styled.div`
   align-items: center;
   gap: 2vh;
   background-color: #ffffff;
+  cursor: pointer;
+  transition: filter 0.6s;
+
+  &:hover {
+    filter: brightness(1.3)
+  }
 
   & img {
     height: 90%;
