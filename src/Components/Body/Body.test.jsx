@@ -1,7 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import FilterProvider from "../../context/FilterContext";
 import MealsProvider from "../../context/MealsContext";
+import renderWithRouter from "../../helpers/renderWithRouter";
 import { Body } from "./Body";
 
 describe("Body Component", () => {
@@ -22,13 +23,15 @@ describe("Body Component", () => {
     const mockFunction = require("../../services/fetchs");
     mockFunction.fetchAllCategories = jest.fn().mockReturnValue(data);
 
-   await act( async () => render(
-      <MealsProvider>
-        <FilterProvider>
-          <Body />
-        </FilterProvider>
-      </MealsProvider>
-    ));
+    await act(async () => {
+      renderWithRouter(
+        <MealsProvider>
+          <FilterProvider>
+            <Body />
+          </FilterProvider>
+        </MealsProvider>
+      );
+    });
   });
 
   test("Should have two card elements", async () => {

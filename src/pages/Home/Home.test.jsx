@@ -1,13 +1,13 @@
-import { render } from "@testing-library/react";
 import FilterProvider from "../../context/FilterContext";
 import MealsProvider from "../../context/MealsContext";
+import renderWithRouter from "../../helpers/renderWithRouter";
 import Home from "./Home";
 
 describe("Home Component", () => {
   let homeRendered;
 
   beforeEach(() => {
-    homeRendered = render(
+    homeRendered = renderWithRouter(
       <MealsProvider>
         <FilterProvider>
           <Home />
