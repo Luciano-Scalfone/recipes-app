@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 
 describe("Meals Page", () => {
+  let containerElement;
   const DATA = [
     {
       strMeal: "big_mac",
@@ -15,6 +16,8 @@ describe("Meals Page", () => {
     mockFunction.fetchById = jest.fn().mockReturnValue(DATA);
 
     await act(async () => render(<MealsDetails />));
+
+    containerElement = screen.getByTestId("meals-details");
   });
 
   test("Should have a element with testid 'meals-details'", () => {
@@ -22,15 +25,13 @@ describe("Meals Page", () => {
   });
 
   test("Should have an image component in element with testid 'meals-details'", () => {
-    const continerElement = screen.getByTestId("meals-details");
-    const imgElement = continerElement.getElementsByTagName("img")[0];
+    const imgElement = containerElement.getElementsByTagName("img")[0];
 
     expect(imgElement).toBeInTheDocument();
   });
 
   test("Should have a property src in img with correct URL", () => {
-    const continerElement = screen.getByTestId("meals-details");
-    const propSrcFromImg = continerElement
+    const propSrcFromImg = containerElement
       .getElementsByTagName("img")[0]
       .getAttribute("src");
 
@@ -38,16 +39,20 @@ describe("Meals Page", () => {
   });
 
   test("Should have a h1 component in element with testid 'meals-details'", () => {
-    const continerElement = screen.getByTestId("meals-details");
-    const h1Element = continerElement.getElementsByTagName("h1")[0];
+    const h1Element = containerElement.getElementsByTagName("h1")[0];
 
     expect(h1Element).toBeInTheDocument();
   });
 
   test("Should have the meal name in h1 component", () => {
-    const continerElement = screen.getByTestId("meals-details");
-    const h1Element = continerElement.getElementsByTagName("h1")[0];
+    const h1Element = containerElement.getElementsByTagName("h1")[0];
 
     expect(h1Element.textContent).toEqual(DATA[0].strMeal);
+  });
+
+  test("Should have a Footer element in last child", () => {
+    const footerElement = containerElement.getElementsByTagName("footer")[0];
+
+    expect(footerElement).toBeInTheDocument();
   });
 });
