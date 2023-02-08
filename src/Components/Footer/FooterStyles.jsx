@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const FooterWrapper = styled.footer`
   grid-area: footer;
   background-color: #FFCDB5;
+  height: 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1vw;
-  justify-self: flex-end;
+  justify-self: ${props => props.inHomePage} ? "none" : "flex-end";
 
   & a {
     font-size: 1.1vw;

@@ -9,7 +9,7 @@ const Home = () => {
     <HomeWrapper data-testid="home-component">
       <Header />
       <Body />
-      <Footer />
+      <Footer inHomePage={true}/>
     </HomeWrapper>
   );
 };

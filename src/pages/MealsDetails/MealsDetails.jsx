@@ -13,7 +13,7 @@ export const MealsDetails = () => {
   useEffect(() => {
     (async () => {
       const data = await fetchById(urlParameter.id);
-
+      console.log(data[0].strInstructions)
       setMeal({
         image: data[0].strMealThumb,
         name: data[0].strMeal,

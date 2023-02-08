@@ -1,9 +1,9 @@
 import { GithubIcon } from '../../assets/Icons';
 import { FooterWrapper } from "./FooterStyles";
 
-export const Footer = () => {
+export const Footer = ({ inHomePage }) => {
   return (
-    <FooterWrapper>
+    <FooterWrapper inHomePage={inHomePage}>
       <h3>
         Powered by{" "}
         <a href="https://github.com/Luciano-Scalfone" target="_blank">
