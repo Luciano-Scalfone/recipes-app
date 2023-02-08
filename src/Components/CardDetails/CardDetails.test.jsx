@@ -7,6 +7,9 @@ describe("CardDetails Component", () => {
   const DATA = {
     name: "big_mac",
     image: "big_mac_image",
+    instructions: "about_preparation",
+    area: "American",
+    category: "Beef",
   };
 
   beforeEach(async () => {
@@ -43,5 +46,27 @@ describe("CardDetails Component", () => {
     const h1Element = containerElement.getElementsByTagName("h1")[0];
 
     expect(h1Element.textContent).toEqual(DATA.name);
+  });
+
+  test("Should have a p component with the meal description", () => {
+    const pElement = containerElement.getElementsByTagName("p")[0];
+
+    expect(pElement).toBeInTheDocument();
+    expect(pElement.textContent).toEqual(DATA.instructions);
+  });
+
+  test("Should have a h3 component with the testid areaAndCategory", () => {
+    const elementByTestId = screen.getByTestId("areaAndCategory");
+    const elementByTagh3 = containerElement.getElementsByTagName("h3");
+
+    expect(elementByTestId.isSameNode(elementByTagh3[0])).toEqual(true);
+  });
+
+  test("Should have a component with testid areaAndCategory containing area and category", () => {
+    const component = screen.getByTestId("areaAndCategory");
+
+    expect(component.textContent).toEqual(
+      `Area: ${DATA.area} | Category: ${DATA.category}`
+    );
   });
 });

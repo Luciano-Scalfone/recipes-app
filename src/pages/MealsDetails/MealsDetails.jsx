@@ -13,10 +13,13 @@ export const MealsDetails = () => {
   useEffect(() => {
     (async () => {
       const data = await fetchById(urlParameter.id);
-      console.log(data[0].strInstructions)
+      console.log(data[0].strInstructions.split('2.'))
       setMeal({
         image: data[0].strMealThumb,
         name: data[0].strMeal,
+        instructions: data[0].strInstructions,
+        area: data[0].strArea,
+        category: data[0].strCategory,  
       });
     })();
   }, [urlParameter.id]);

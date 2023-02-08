@@ -6,4 +6,8 @@ export const CardDetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  & h1 {
+    font-size: 4vw;
+  }
 `;
