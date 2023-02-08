@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchById } from "../../services/fetchs";
 import { Footer } from "../../Components/Footer/Footer";
+import { MealsDetailsWrapper } from "./MealsDetailsStyles";
+import { CardDetails } from "../../Components/CardDetails/CardDetails";
 
 export const MealsDetails = () => {
   const urlParameter = useParams();
@@ -20,10 +22,9 @@ export const MealsDetails = () => {
   }, [urlParameter.id]);
   
   return (
-    <div className="container" data-testid="meals-details">
-      <img src={meal.image} alt="Meal" />
-      <h1>{meal.name}</h1>
+    <MealsDetailsWrapper className="container" data-testid="meals-details">
+      <CardDetails meal={meal} />
       <Footer />
-    </div>
+    </MealsDetailsWrapper>
   );
 };
