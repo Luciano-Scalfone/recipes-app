@@ -15,9 +15,8 @@ export const CardDetailsWrapper = styled.div`
 
 export const DetailsWrapper = styled.div`
   display: grid;
-  grid-template-areas: 'contentImage contentDescriptions';
+  grid-template-areas: 'contentImage contentList' 'contentImage contentDescriptions';
   grid-template-columns: 30% 70%;
-  grid-template-rows: 1fr;
   padding: 0 2.5vw;
 
   & img {
@@ -25,7 +24,11 @@ export const DetailsWrapper = styled.div`
     padding-right: 3vw;
   }
 
-  & p {
+  & .instructionList {
     grid-area: contentDescriptions;
+  }
+
+  & .ingredientsList {
+    grid-area: contentList;
   }
 `

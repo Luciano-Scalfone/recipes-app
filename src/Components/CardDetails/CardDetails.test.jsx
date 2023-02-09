@@ -7,9 +7,10 @@ describe("CardDetails Component", () => {
   const DATA = {
     name: "big_mac",
     image: "big_mac_image",
-    instructions: "about_preparation",
+    instructions: ["about_preparation", "preparation_about"],
     area: "American",
     category: "Beef",
+    ingredients: ['ingredient1', 'ingredient2']
   };
 
   beforeEach(async () => {
@@ -54,13 +55,6 @@ describe("CardDetails Component", () => {
     expect(h1Element.textContent).toEqual(DATA.name);
   });
 
-  test("Should have a p component with the meal description", () => {
-    const pElement = containerElement.getElementsByTagName("p")[0];
-
-    expect(pElement).toBeInTheDocument();
-    expect(pElement.textContent).toEqual(DATA.instructions);
-  });
-
   test("Should have a h3 component with the testid areaAndCategory", () => {
     const elementByTestId = screen.getByTestId("areaAndCategory");
 
@@ -73,5 +67,31 @@ describe("CardDetails Component", () => {
     expect(component.textContent).toEqual(
       `Area: ${DATA.area} | Category: ${DATA.category}`
     );
+  });
+
+  test("Should have a ul component", () => {
+    const ulComponent = containerElement.querySelector('ul');
+
+    expect(ulComponent).toBeInTheDocument();
+  });
+
+  test("Should have two li elements as ul children", () => {
+    const ulComponent = containerElement.querySelector('ul');
+    const liComponents = ulComponent.querySelectorAll('li');
+
+    expect(liComponents).toHaveLength(2);
+  });
+
+  test("Should have a ol component", () => {
+    const olComponent = containerElement.querySelector('ol');
+
+    expect(olComponent).toBeInTheDocument();
+  });
+
+  test("Should have two li elements as ol children", () => {
+    const olComponent = containerElement.querySelector('ol');
+    const liComponents = olComponent.querySelectorAll('li');
+
+    expect(liComponents).toHaveLength(2);
   });
 });

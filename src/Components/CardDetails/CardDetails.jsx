@@ -9,7 +9,20 @@ export const CardDetails = ({ meal }) => {
       </h3>
       <DetailsWrapper data-testid="details">
         <img src={meal.image} alt="Meal" height="100%" width="100%" />
-        <p>{meal.instructions}</p>
+        <ul data-testid="ingredients-list" className="ingredientsList">
+          { meal.ingredients?.map((ingredient, index) => {
+              return (
+                <li key={`ingredient-${index+1}`} >{ingredient}</li>
+              )
+          }) }
+        </ul>
+        <ol data-testid="instructions-list" className="instructionList">
+          { meal.instructions?.map((instruction, index) => {
+              return (
+                <li key={`instruction-${index+1}`} >{instruction}</li>
+              )
+          }) }
+        </ol>
       </DetailsWrapper>
     </CardDetailsWrapper>
   );
