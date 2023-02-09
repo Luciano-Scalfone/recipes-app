@@ -11,3 +11,9 @@ export const CardDetailsWrapper = styled.div`
     font-size: 4vw;
   }
 `;
+
+export const DetailsWrapper = styled.div`
+  display: grid;
+  grid-template-areas: 'contentImage contentDescriptions';
+  grid-template-columns: 30% 70%;
+`

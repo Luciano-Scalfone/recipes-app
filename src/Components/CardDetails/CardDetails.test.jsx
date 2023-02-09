@@ -22,6 +22,12 @@ describe("CardDetails Component", () => {
     expect(containerElement).toBeInTheDocument();
   });
 
+  test("Should have a div element in element 'cards-details' and the element have testid 'details'", () => {
+    const divComponent = screen.getByTestId("details");
+
+    expect(divComponent.tagName).toEqual("DIV");
+  });
+
   test("Should have an image component in element with testid 'cards-details'", () => {
     const imgElement = containerElement.getElementsByTagName("img")[0];
 
@@ -57,9 +63,8 @@ describe("CardDetails Component", () => {
 
   test("Should have a h3 component with the testid areaAndCategory", () => {
     const elementByTestId = screen.getByTestId("areaAndCategory");
-    const elementByTagh3 = containerElement.getElementsByTagName("h3");
 
-    expect(elementByTestId.isSameNode(elementByTagh3[0])).toEqual(true);
+    expect(elementByTestId.tagName).toEqual("H3");
   });
 
   test("Should have a component with testid areaAndCategory containing area and category", () => {
