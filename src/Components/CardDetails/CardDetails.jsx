@@ -8,7 +8,7 @@ export const CardDetails = ({ meal }) => {
         Area: {meal.area} | Category: {meal.category}
       </h3>
       <DetailsWrapper data-testid="details">
-        <img src={meal.image} alt="Meal" height="30%" width="30%" />
+        <img src={meal.image} alt="Meal" height="100%" width="100%" />
         <p>{meal.instructions}</p>
       </DetailsWrapper>
     </CardDetailsWrapper>
