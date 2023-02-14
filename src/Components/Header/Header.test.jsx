@@ -36,18 +36,20 @@ describe("Header Component", () => {
     expect(buttonElement).toBeInTheDocument();
   });
 
-  test('Select Element should have specific options', () => {
-    const options = ['name', 'first-letter', 'category', 'area', 'ingredient'];
+  test("Select Element should have specific options", () => {
+    const options = ["name", "first-letter", "category", "area", "ingredient"];
     const selectElement = headerComponent.querySelector("select");
-    const selectOptionsList = [...selectElement.children].map(option => option.value);
-  
+    const selectOptionsList = [...selectElement.children].map(
+      (option) => option.value
+    );
+
     expect(selectElement.children.length).toBe(options.length);
     expect(selectOptionsList).toEqual(options);
   });
 
   test("Button element should have a bi-search icon", () => {
     const buttonElement = headerComponent.querySelector("button");
-    const buttonIcon = buttonElement.querySelector('.bi-search');
+    const buttonIcon = buttonElement.querySelector(".bi-search");
 
     expect(buttonIcon).toBeInTheDocument();
   });

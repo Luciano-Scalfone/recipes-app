@@ -1,25 +1,36 @@
 import { CardDetails } from "./CardDetails";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import renderWithRouter from "../../helpers/renderWithRouter";
 
 describe("CardDetails Component", () => {
   let containerElement;
   const DATA = {
+    id: "1",
     name: "big_mac",
     image: "big_mac_image",
-    instructions: "about_preparation",
+    instructions: ["about_preparation", "preparation_about"],
     area: "American",
     category: "Beef",
+    ingredients: ["ingredient1", "ingredient2"],
   };
 
   beforeEach(async () => {
-    await act(async () => render(<CardDetails meal={DATA} />));
-
+    await act(async () => {
+      renderWithRouter(<CardDetails meal={DATA} />);
+    });
+    
     containerElement = screen.getByTestId("cards-details");
   });
 
   test("Should have a element with testid 'cards-details'", () => {
     expect(containerElement).toBeInTheDocument();
+  });
+
+  test("Should have a div element in element 'cards-details' and the element have testid 'details'", () => {
+    const divComponent = screen.getByTestId("details");
+
+    expect(divComponent.tagName).toEqual("DIV");
   });
 
   test("Should have an image component in element with testid 'cards-details'", () => {
@@ -48,18 +59,10 @@ describe("CardDetails Component", () => {
     expect(h1Element.textContent).toEqual(DATA.name);
   });
 
-  test("Should have a p component with the meal description", () => {
-    const pElement = containerElement.getElementsByTagName("p")[0];
-
-    expect(pElement).toBeInTheDocument();
-    expect(pElement.textContent).toEqual(DATA.instructions);
-  });
-
   test("Should have a h3 component with the testid areaAndCategory", () => {
     const elementByTestId = screen.getByTestId("areaAndCategory");
-    const elementByTagh3 = containerElement.getElementsByTagName("h3");
 
-    expect(elementByTestId.isSameNode(elementByTagh3[0])).toEqual(true);
+    expect(elementByTestId.tagName).toEqual("H3");
   });
 
   test("Should have a component with testid areaAndCategory containing area and category", () => {
@@ -68,5 +71,51 @@ describe("CardDetails Component", () => {
     expect(component.textContent).toEqual(
       `Area: ${DATA.area} | Category: ${DATA.category}`
     );
+  });
+
+  test("Should have a ul component", () => {
+    const ulComponent = containerElement.querySelector("ul");
+
+    expect(ulComponent).toBeInTheDocument();
+  });
+
+  test("Should have two li elements as ul children", () => {
+    const ulComponent = containerElement.querySelector("ul");
+    const liComponents = ulComponent.querySelectorAll("li");
+
+    expect(liComponents).toHaveLength(2);
+  });
+
+  test("Should have a ol component", () => {
+    const olComponent = containerElement.querySelector("ol");
+
+    expect(olComponent).toBeInTheDocument();
+  });
+
+  test("Should have two li elements as ol children", () => {
+    const olComponent = containerElement.querySelector("ol");
+    const liComponents = olComponent.querySelectorAll("li");
+
+    expect(liComponents).toHaveLength(2);
+  });
+
+  test("Should have a h4 element in ul element with text 'Ingredients'", () => {
+    const ulComponent = containerElement.querySelector("ul");
+    const h4Element = ulComponent.getElementsByTagName("h4")[0];
+
+    expect(h4Element.textContent).toEqual("Ingredients:");
+  });
+
+  test("Should have a h4 element in ol element with text 'Instructions'", () => {
+    const olComponent = containerElement.querySelector("ol");
+    const h4Element = olComponent.getElementsByTagName("h4")[0];
+
+    expect(h4Element.textContent).toEqual("Instructions:");
+  });
+
+  test("Should have a button element with text 'Prepare'", () => {
+    const buttonComponent = containerElement.querySelector("button");
+
+    expect(buttonComponent.textContent).toEqual("Prepare");
   });
 });
