@@ -25,7 +25,6 @@ export const DetailsWrapper = styled.div`
     grid-area: contentImage;
     height: 65vh;
     border-radius: 15px;
-    // margin: auto 0;
   }
 
   & .instructionList {
@@ -39,7 +38,6 @@ export const DetailsWrapper = styled.div`
     padding: 3vh;
     border-radius: 15px;
     height: fit-content;
-    // margin: auto 0;
     font-size: 1.2vw;
   }
 

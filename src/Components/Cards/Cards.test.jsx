@@ -15,7 +15,7 @@ describe("Cards Component", () => {
     getText = getByText;
   });
 
-  test('Should be defined', () => {
+  test("Should be defined", () => {
     const CardsElement = render(<Cards />);
 
     expect(CardsElement).toBeDefined();

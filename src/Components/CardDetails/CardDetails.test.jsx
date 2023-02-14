@@ -10,7 +10,7 @@ describe("CardDetails Component", () => {
     instructions: ["about_preparation", "preparation_about"],
     area: "American",
     category: "Beef",
-    ingredients: ['ingredient1', 'ingredient2']
+    ingredients: ["ingredient1", "ingredient2"],
   };
 
   beforeEach(async () => {
@@ -70,28 +70,42 @@ describe("CardDetails Component", () => {
   });
 
   test("Should have a ul component", () => {
-    const ulComponent = containerElement.querySelector('ul');
+    const ulComponent = containerElement.querySelector("ul");
 
     expect(ulComponent).toBeInTheDocument();
   });
 
   test("Should have two li elements as ul children", () => {
-    const ulComponent = containerElement.querySelector('ul');
-    const liComponents = ulComponent.querySelectorAll('li');
+    const ulComponent = containerElement.querySelector("ul");
+    const liComponents = ulComponent.querySelectorAll("li");
 
     expect(liComponents).toHaveLength(2);
   });
 
   test("Should have a ol component", () => {
-    const olComponent = containerElement.querySelector('ol');
+    const olComponent = containerElement.querySelector("ol");
 
     expect(olComponent).toBeInTheDocument();
   });
 
   test("Should have two li elements as ol children", () => {
-    const olComponent = containerElement.querySelector('ol');
-    const liComponents = olComponent.querySelectorAll('li');
+    const olComponent = containerElement.querySelector("ol");
+    const liComponents = olComponent.querySelectorAll("li");
 
     expect(liComponents).toHaveLength(2);
+  });
+
+  test("Should have a h4 element in ul element with text 'Ingredients'", () => {
+    const ulComponent = containerElement.querySelector("ul");
+    const h4Element = ulComponent.getElementsByTagName('h4')[0];
+    
+    expect(h4Element.textContent).toEqual('Ingredients:');
+  });
+  
+  test("Should have a h4 element in ol element with text 'Instructions'", () => {
+    const olComponent = containerElement.querySelector("ol");
+    const h4Element = olComponent.getElementsByTagName('h4')[0];
+    
+    expect(h4Element.textContent).toEqual('Instructions:');
   });
 });
