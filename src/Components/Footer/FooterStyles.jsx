@@ -8,7 +8,6 @@ export const FooterWrapper = styled.footer`
   align-items: center;
   justify-content: center;
   font-size: 1vw;
-  justify-self: ${props => props.inHomePage} ? "none" : "flex-end";
 
   & a {
     font-size: 1.1vw;

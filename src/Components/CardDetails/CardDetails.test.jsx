@@ -1,10 +1,12 @@
 import { CardDetails } from "./CardDetails";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import renderWithRouter from "../../helpers/renderWithRouter";
 
 describe("CardDetails Component", () => {
   let containerElement;
   const DATA = {
+    id: "1",
     name: "big_mac",
     image: "big_mac_image",
     instructions: ["about_preparation", "preparation_about"],
@@ -14,8 +16,10 @@ describe("CardDetails Component", () => {
   };
 
   beforeEach(async () => {
-    await act(async () => render(<CardDetails meal={DATA} />));
-
+    await act(async () => {
+      renderWithRouter(<CardDetails meal={DATA} />);
+    });
+    
     containerElement = screen.getByTestId("cards-details");
   });
 
@@ -97,15 +101,21 @@ describe("CardDetails Component", () => {
 
   test("Should have a h4 element in ul element with text 'Ingredients'", () => {
     const ulComponent = containerElement.querySelector("ul");
-    const h4Element = ulComponent.getElementsByTagName('h4')[0];
-    
-    expect(h4Element.textContent).toEqual('Ingredients:');
+    const h4Element = ulComponent.getElementsByTagName("h4")[0];
+
+    expect(h4Element.textContent).toEqual("Ingredients:");
   });
-  
+
   test("Should have a h4 element in ol element with text 'Instructions'", () => {
     const olComponent = containerElement.querySelector("ol");
-    const h4Element = olComponent.getElementsByTagName('h4')[0];
-    
-    expect(h4Element.textContent).toEqual('Instructions:');
+    const h4Element = olComponent.getElementsByTagName("h4")[0];
+
+    expect(h4Element.textContent).toEqual("Instructions:");
+  });
+
+  test("Should have a button element with text 'Prepare'", () => {
+    const buttonComponent = containerElement.querySelector("button");
+
+    expect(buttonComponent.textContent).toEqual("Prepare");
   });
 });

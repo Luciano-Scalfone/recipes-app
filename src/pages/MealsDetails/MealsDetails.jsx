@@ -36,6 +36,7 @@ export const MealsDetails = () => {
     (async () => {
       const data = await fetchById(urlParameter.id);
       setMeal({
+        id: urlParameter.id,
         image: data[0].strMealThumb,
         name: data[0].strMeal,
         instructions: handleIntruction(data[0].strInstructions),

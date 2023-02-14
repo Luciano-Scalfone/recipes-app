@@ -1,11 +1,12 @@
 import { MealsDetails } from "./MealsDetails";
 import { render, screen } from "@testing-library/react";
+import renderWithRouter from "../../helpers/renderWithRouter";
 
 describe("Meals Page", () => {
   let containerElement;
 
   beforeEach(() => {
-    render(<MealsDetails />);
+    renderWithRouter(<MealsDetails />);
 
     containerElement = screen.getByTestId("meals-details");
   });

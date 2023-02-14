@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { CardDetailsWrapper, DetailsWrapper } from "./CardDetailsStyles";
 
 export const CardDetails = ({ meal }) => {
+  const navigateTo = useNavigate();
+
   return (
     <CardDetailsWrapper className="container" data-testid="cards-details">
       <h1>{meal.name}</h1>
@@ -26,6 +29,7 @@ export const CardDetails = ({ meal }) => {
           }) }
         </ol>
       </DetailsWrapper>
+      <button onClick={() => navigateTo(`/prepareRecipes/${meal.id}`)}>Prepare</button>
     </CardDetailsWrapper>
   );
 };

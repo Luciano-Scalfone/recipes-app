@@ -12,6 +12,23 @@ export const CardDetailsWrapper = styled.div`
   & h1 {
     font-size: 4vw;
   }
+
+  & button {
+    background-color: #A1C45A;
+    border: none;
+    border-radius: 5px;
+    color: #FFF6F6;
+    width: 5vw;
+    height: 5vh;
+    font-size: 1vw;
+    transition: filter 0.1s;
+    cursor: pointer;
+    margin-bottom: 3vh;
+
+    &:active {
+      filter: contrast(80%);
+    }
+  }
 `;
 
 export const DetailsWrapper = styled.div`
