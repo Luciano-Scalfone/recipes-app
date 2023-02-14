@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const CardDetailsWrapper = styled.div`
+  height-min: 95vh;
   flex: 1;
   background-color: #FFF6F6;
   display: flex;
@@ -18,11 +19,13 @@ export const DetailsWrapper = styled.div`
   grid-template-areas: 'contentImage contentList contentDescriptions' ;
   grid-template-columns: 30% 35% 35%;
   padding: 0 2.5vw;
+  margin-bottom: 3vh;
 
   & img {
     grid-area: contentImage;
-    // padding-right: 3vw;
+    height: 65vh;
     border-radius: 15px;
+    // margin: auto 0;
   }
 
   & .instructionList {
@@ -31,6 +34,13 @@ export const DetailsWrapper = styled.div`
     flex-direction: column;
     gap: 1vh;
     justify-content: center;
+    background-color: #FFE5AB;
+    width: 80%;
+    padding: 3vh;
+    border-radius: 15px;
+    height: fit-content;
+    // margin: auto 0;
+    font-size: 1.2vw;
   }
 
   & .ingredientsList {
@@ -40,8 +50,10 @@ export const DetailsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1vh;
-    margin: 15% 0 0 35%;
-    // justify-content: center;
-    // align-items: center;
+    margin: 0 auto;
+    background-color: #FFE5AB;
+    padding: 3vh;
+    border-radius: 15px;
+    font-size: 1.2vw;
   }
 `
