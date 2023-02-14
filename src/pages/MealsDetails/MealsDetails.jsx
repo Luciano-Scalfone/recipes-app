@@ -11,28 +11,23 @@ export const MealsDetails = () => {
   const [meal, setMeal] = useState({});
 
   const handleIngredientsAndMeasures = (meal) => {
-    const ingredientsList = [];
+    const ingredientsList = Object.entries(meal)
+      .filter(
+        ([key, value]) => key.includes("strIngredient") && value.length > 0
+      )
+      .map(([key, value]) => {
+        const measureKey = `strMeasure${key.match(/(\d+)/)[0]}`;
 
-    for (let ingredient in meal) {
-      if (ingredient.includes('strIngredient') && meal[ingredient].length > 0) {
-        const measureKey = `strMeasure${ingredient.match(/(\d+)/)[0]}`;
-        const ingredientAndMeasure = `${meal[measureKey]} ${meal[ingredient]}`
-
-        ingredientsList.push(ingredientAndMeasure);
-      }
-    };
+        return `${meal[measureKey]} ${value}`;
+      });
 
     return ingredientsList;
   };
 
   const handleIntruction = (meal) => {
-    const splitedIntruction = meal.split(/(\d+\.+\s)/);
-    
-    splitedIntruction.map((item, index) => {
-      if (item.match(/(\d+\.)/)) {
-        splitedIntruction.splice(index, 1);
-      }
-    });
+    const splitedIntruction = meal
+      .split(/(\d+\.+\s)/)
+      .filter((item) => item.length > 3 && item);
 
     return splitedIntruction;
   };
@@ -45,13 +40,12 @@ export const MealsDetails = () => {
         name: data[0].strMeal,
         instructions: handleIntruction(data[0].strInstructions),
         area: data[0].strArea,
-        category: data[0].strCategory,  
+        category: data[0].strCategory,
         ingredients: handleIngredientsAndMeasures(...data),
       });
     })();
-
   }, [urlParameter.id]);
-  
+
   return (
     <MealsDetailsWrapper className="container" data-testid="meals-details">
       <CardDetails meal={meal} />
