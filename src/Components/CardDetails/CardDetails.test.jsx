@@ -47,30 +47,10 @@ describe("CardDetails Component", () => {
     expect(propSrcFromImg).toEqual(DATA.image);
   });
 
-  test("Should have a h1 component", () => {
-    const h1Element = containerElement.querySelector("h1");
+  test("Should have a div element with testid 'recipe-title-component'", () => {
+    const recipeTitle = screen.getByTestId("recipe-title-component");
 
-    expect(h1Element).toBeInTheDocument();
-  });
-
-  test("Should have the meal name in h1 component", () => {
-    const h1Element = containerElement.getElementsByTagName("h1")[0];
-
-    expect(h1Element.textContent).toEqual(DATA.name);
-  });
-
-  test("Should have a h3 component with the testid areaAndCategory", () => {
-    const elementByTestId = screen.getByTestId("areaAndCategory");
-
-    expect(elementByTestId.tagName).toEqual("H3");
-  });
-
-  test("Should have a component with testid areaAndCategory containing area and category", () => {
-    const component = screen.getByTestId("areaAndCategory");
-
-    expect(component.textContent).toEqual(
-      `Area: ${DATA.area} | Category: ${DATA.category}`
-    );
+    expect(recipeTitle).toBeInTheDocument();
   });
 
   test("Should have a ul component", () => {

@@ -9,10 +9,6 @@ export const CardDetailsWrapper = styled.div`
   align-items: center;
   gap: 3vh;
 
-  & h1 {
-    font-size: 4vw;
-  }
-
   & button {
     background-color: #A1C45A;
     border: none;

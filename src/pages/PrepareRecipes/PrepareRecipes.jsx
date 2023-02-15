@@ -3,7 +3,6 @@ import { PrepareRecipesWrapper } from "./PrepareRecipesStyles";
 import { Footer } from "../../Components/Footer/Footer";
 import { PrepareInstructions } from "../../Components/RecipeInstructions/PrepareInstructions";
 import { useParams } from "react-router-dom";
-import { fetchById } from "../../services/fetchs";
 import { fetchByIDHelper } from "../../helpers/fetchByIDHeHelper";
 
 export const PrepareRecipes = () => {

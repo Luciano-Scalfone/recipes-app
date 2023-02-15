@@ -1,13 +1,11 @@
+import RecipeTitle from "../RecipeTitle/RecipeTitle";
 import { PrepareInstructionsWrapper } from "./PrepareInstructionsStyles";
 
 export const PrepareInstructions = ({ meal }) => {
 
   return (
     <PrepareInstructionsWrapper className="container" data-testid="prepare-instructions">
-      <h1>{meal.name}</h1>
-      <h3 data-testid="area-and-category">
-        Area: {meal.area} | Category: {meal.category}
-      </h3>
+      <RecipeTitle recipe={meal} />
       {/* <div data-testid="prepare-details">
         <img src={meal.image} alt="Meal" height="100%" width="100%" />
         <ul data-testid="ingredients-list-checkbox" className="ingredientsList">
