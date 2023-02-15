@@ -47,8 +47,8 @@ describe("CardDetails Component", () => {
     expect(propSrcFromImg).toEqual(DATA.image);
   });
 
-  test("Should have a h1 component in element with testid 'cards-details'", () => {
-    const h1Element = containerElement.getElementsByTagName("h1")[0];
+  test("Should have a h1 component", () => {
+    const h1Element = containerElement.querySelector("h1");
 
     expect(h1Element).toBeInTheDocument();
   });
