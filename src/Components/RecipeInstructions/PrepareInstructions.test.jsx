@@ -28,4 +28,10 @@ describe("PrepareInstructions Component", () => {
 
     expect(recipeTitle).toBeInTheDocument();
   });
+
+  test("Should have an iframe element ", () => {
+    const videoElement = containerElement.querySelector("iframe");
+
+    expect(videoElement).toBeInTheDocument();
+  });
 });

@@ -20,7 +20,11 @@ const handleIntruction = (meal) => {
   return splitedIntruction;
 };
 
-export const fetchByIDHelper = async ( id ) => {
+const handleLink = (link) => {
+  return link.split('watch?v=').join('embed/');
+};
+
+export const fetchByIDHelper = async (id) => {
   const data = await fetchById(id);
 
   return {
@@ -31,5 +35,6 @@ export const fetchByIDHelper = async ( id ) => {
     area: data[0].strArea,
     category: data[0].strCategory,
     ingredients: handleIngredientsAndMeasures(...data),
+    videoLink: handleLink(data[0].strYoutube),
   };
 };
