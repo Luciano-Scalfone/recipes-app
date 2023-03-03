@@ -14,6 +14,7 @@ export const CardWrapper = styled.div`
   background-color: #ffffff;
   cursor: pointer;
   transition: filter 0.6s;
+  position: relative;
 
   &:hover {
     filter: brightness(1.3)
@@ -22,5 +23,21 @@ export const CardWrapper = styled.div`
   & img {
     height: 90%;
     width: 100%;
+  }
+`;
+
+export const PillWrapper = styled.div`
+  color: white;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(-50%, 100%);
+  border: 1px solid #709127;
+  border-radius: 15px;
+  padding: 0.3rem 0.5rem;
+  background-color: #A1C45A;
+
+  &:after {
+    content: "Maked";
   }
 `;

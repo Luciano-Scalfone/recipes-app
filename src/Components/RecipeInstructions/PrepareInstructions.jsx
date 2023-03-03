@@ -1,29 +1,53 @@
+import { useContext } from "react";
 import { useState, useEffect } from "react";
+import { MealsContext } from "../../context/MealsContext";
 import RecipeTitle from "../RecipeTitle/RecipeTitle";
 import { PrepareInstructionsWrapper } from "./PrepareInstructionsStyles";
 
 export const PrepareInstructions = ({ meal }) => {
-  const { videoLink, name, ingredients, instructions } = meal;
+  const { videoLink, name, ingredients, instructions, id } = meal;
   const [ingredientsChecked, setIngredientsChecked] = useState([]);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const { setRecipesMaked } = useContext(MealsContext);
 
   const isDoneButtonDisabled = () => {
-    console.log(ingredientsChecked);
-    console.log(
-      ingredientsChecked?.every((ingredient) => ingredient.isChecked === true)
+    return ingredientsChecked?.every(
+      (ingredient) => ingredient.isChecked === true
     );
+  };
+
+  const handleCheckboxClick = (event) => {
+    const filteredIngredients = ingredientsChecked.filter(
+      (ingredient) => ingredient.ingredientName !== event.target.id
+    );
+
+    setIngredientsChecked([
+      ...filteredIngredients,
+      { ingredientName: event.target.id, isChecked: event.target.checked },
+    ]);
+  };
+
+  const handleOnClickbutton = () => {
+    setRecipesMaked((prevState) => [...prevState, id] )
   };
 
   useEffect(() => {
     const ingredientsAssync = async () => {
-      const newIngredients = await ingredients;
-      const modifiedIngredients = newIngredients.map((ingredient) => {
+      const modifiedIngredients = await ingredients?.map((ingredient) => {
         return { ingredientName: ingredient, isChecked: false };
       });
-  
-      setIngredientsChecked(modifiedIngredients);
 
-    }
-  }, []);
+      setIngredientsChecked(modifiedIngredients);
+    };
+
+    ingredientsAssync();
+  }, [ingredients]);
+
+  useEffect(() => {
+    const disabled = isDoneButtonDisabled();
+
+    setButtonDisabled(!disabled);
+  }, [ingredientsChecked]);
 
   return (
     <PrepareInstructionsWrapper
@@ -42,7 +66,11 @@ export const PrepareInstructions = ({ meal }) => {
           return (
             <li key={ingredient + index}>
               <label>
-                <input type="checkbox" id={ingredient} />
+                <input
+                  type="checkbox"
+                  id={ingredient}
+                  onChange={handleCheckboxClick}
+                />
                 {ingredient}
               </label>
             </li>
@@ -55,7 +83,7 @@ export const PrepareInstructions = ({ meal }) => {
           return <li key={`instruction-${index + 1}`}>{instruction}</li>;
         })}
       </ol>
-      <button>Done</button>
+      <button disabled={buttonDisabled} onClick={handleOnClickbutton}>Done</button>
     </PrepareInstructionsWrapper>
   );
 };
