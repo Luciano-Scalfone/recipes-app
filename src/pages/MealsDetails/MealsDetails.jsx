@@ -14,6 +14,8 @@ export const MealsDetails = () => {
     const fetchRecipe = async () => {
       const recipe = await fetchByIDHelper(id);
       setMeal(recipe);
+      console.log('mealdetails', meal)
+      console.log(recipe)
     };
 
     fetchRecipe();

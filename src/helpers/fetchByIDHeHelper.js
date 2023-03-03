@@ -27,7 +27,7 @@ const handleLink = (link) => {
 export const fetchByIDHelper = async (id) => {
   const data = await fetchById(id);
 
-  return {
+  return ({
     id,
     image: data[0].strMealThumb,
     name: data[0].strMeal,
@@ -36,5 +36,5 @@ export const fetchByIDHelper = async (id) => {
     category: data[0].strCategory,
     ingredients: handleIngredientsAndMeasures(...data),
     videoLink: handleLink(data[0].strYoutube),
-  };
+  });
 };

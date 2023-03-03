@@ -5,10 +5,13 @@ import { PrepareInstructions } from "./PrepareInstructions";
 describe("PrepareInstructions Component", () => {
   let containerElement;
   const DATA = {
-    id: "1",
-    image: "big_mac_image",
-    instructions: ["about_preparation", "preparation_about"],
-    ingredients: ["ingredient1", "ingredient2"],
+    name: "big_mac_image",
+    videoLink: "some_link",
+    ingredients: [
+      "ingredient1",
+      "ingredient2",
+      "ingredient3",
+    ],
   };
 
   beforeEach(async () => {
@@ -33,5 +36,26 @@ describe("PrepareInstructions Component", () => {
     const videoElement = containerElement.querySelector("iframe");
 
     expect(videoElement).toBeInTheDocument();
+  });
+
+  test("Should have a props src and title in iframe element with correct data", () => {
+    const videoElement = containerElement.querySelector("iframe");
+    
+    expect(videoElement.title).toEqual(DATA.name);
+    expect(videoElement.src).toEqual(`http://localhost/${DATA.videoLink}`);
+  });
+
+  test("Should have some checkbox input elements", () => {
+    const checkboxElement = containerElement.querySelectorAll('[type="checkbox"]');
+
+    expect(checkboxElement.length).toBeGreaterThan(0);
+    expect(checkboxElement.length).toEqual(DATA.ingredients.length);
+  });
+
+  test("Should have a button element as last child and contain the word 'done'", () => {
+    const buttonElement = containerElement.querySelector("button:last-child");
+    
+    expect(buttonElement).toBeInTheDocument();
+    expect(buttonElement.textContent).toEqual("Done");
   });
 });
