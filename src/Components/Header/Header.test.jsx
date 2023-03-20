@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import FilterProvider from "../../context/FilterContext";
 import MealsProvider from "../../context/MealsContext";
 import { Header } from "./Header";
@@ -52,5 +52,12 @@ describe("Header Component", () => {
     const buttonIcon = buttonElement.querySelector(".bi-search");
 
     expect(buttonIcon).toBeInTheDocument();
+  });
+
+  test("Should have a 'sign in' button", () => {
+    const signInButton = screen.getByText('Sign in');
+
+    expect(signInButton).toBeInTheDocument();
+    expect(signInButton.tagName).toBe('BUTTON');
   });
 });

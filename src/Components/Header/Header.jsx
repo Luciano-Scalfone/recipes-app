@@ -3,6 +3,7 @@ import { DebounceInput } from "react-debounce-input";
 import { SearchIcon } from "../../assets/Icons";
 import { FilterContext } from "../../context/FilterContext";
 import { FILTER_INITIAL_STATE } from "../../interfaces/filterInitialState";
+import { Button } from "../Button/Button";
 import { HeaderWrapper } from "./HeaderStyles";
 
 export const Header = () => {
@@ -39,9 +40,11 @@ export const Header = () => {
         type="text"
         placeholder="Big Mc"
       />
-      <button onClick={() => onFilterButtonClick()} type="button">
+      <button onClick={() => onFilterButtonClick()} type="button" className="filter-button">
         <SearchIcon />
       </button>
+
+      <Button />
     </HeaderWrapper>
   );
 };
