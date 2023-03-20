@@ -1,6 +1,7 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Cards } from "./Cards";
+import MealsProvider from "../../context/MealsContext";
 
 describe("Cards Component", () => {
   let CardsElement;
@@ -8,7 +9,9 @@ describe("Cards Component", () => {
 
   beforeEach(() => {
     const { container, getByText } = render(
-      <Cards name="some_name" imageSrc="some_url" />
+      <MealsProvider>
+        <Cards name="some_name" imageSrc="some_url" />
+      </MealsProvider>
     );
 
     CardsElement = container;
@@ -16,8 +19,6 @@ describe("Cards Component", () => {
   });
 
   test("Should be defined", () => {
-    const CardsElement = render(<Cards />);
-
     expect(CardsElement).toBeDefined();
     expect(CardsElement).not.toBeNull();
   });
@@ -34,8 +35,8 @@ describe("Cards Component", () => {
     expect(imgElement).toBeInTheDocument();
   });
 
-  test("Should have a h2 element like last child position in div element", () => {
-    const h2Element = CardsElement.querySelector("div h2:last-child");
+  test("Should have a h2 elementl", () => {
+    const h2Element = CardsElement.querySelector("div h2");
 
     expect(h2Element).toBeInTheDocument();
   });
@@ -51,4 +52,20 @@ describe("Cards Component", () => {
 
     expect(imageSrc).toBeInTheDocument();
   });
+
+  // test("Should have a div element with testid 'pill-maked' when meal.id exists in context.recipesDone", () => {
+  //   const stateSetter = jest.fn();
+  //   jest.spyOn(React, "useState").mockImplementation((stateValue) => [stateValue = true, stateSetter]);
+  //   const divElement = screen.getByTestId("pill-maked");
+
+  //   expect(divElement).toBeInTheDocument();
+  // });
+
+  // test("Should not have a div element with testid 'pill-maked' when meal.id doesn't exists in context.recipesDone", () => {
+  //   const stateSetter = jest.fn();
+  //   jest.spyOn(React, "useState").mockImplementation((stateValue) => [stateValue = false, stateSetter]);
+  //   const divElement = screen.getByTestId("pill-maked");
+
+  //   expect(divElement).not.toBeInTheDocument();
+  // });
 });

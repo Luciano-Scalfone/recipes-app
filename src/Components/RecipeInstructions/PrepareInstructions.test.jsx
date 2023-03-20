@@ -2,23 +2,23 @@ import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { PrepareInstructions } from "./PrepareInstructions";
 
-describe("CardDetails Component", () => {
+describe("PrepareInstructions Component", () => {
   let containerElement;
   const DATA = {
-    id: "1",
-    name: "big_mac",
-    image: "big_mac_image",
-    instructions: ["about_preparation", "preparation_about"],
-    area: "American",
-    category: "Beef",
-    ingredients: ["ingredient1", "ingredient2"],
+    name: "big_mac_image",
+    videoLink: "some_link",
+    ingredients: [
+      "ingredient1",
+      "ingredient2",
+      "ingredient3",
+    ],
   };
 
   beforeEach(async () => {
     await act(async () => {
-      render(<PrepareInstructions />);
+      render(<PrepareInstructions meal={DATA} />);
     });
-    
+
     containerElement = screen.getByTestId("prepare-instructions");
   });
 
@@ -26,4 +26,36 @@ describe("CardDetails Component", () => {
     expect(containerElement).toBeInTheDocument();
   });
 
+  test("Should have a div element with testid 'recipe-title-component'", () => {
+    const recipeTitle = screen.getByTestId("recipe-title-component");
+
+    expect(recipeTitle).toBeInTheDocument();
+  });
+
+  test("Should have an iframe element ", () => {
+    const videoElement = containerElement.querySelector("iframe");
+
+    expect(videoElement).toBeInTheDocument();
+  });
+
+  test("Should have a props src and title in iframe element with correct data", () => {
+    const videoElement = containerElement.querySelector("iframe");
+    
+    expect(videoElement.title).toEqual(DATA.name);
+    expect(videoElement.src).toEqual(`http://localhost/${DATA.videoLink}`);
+  });
+
+  test("Should have some checkbox input elements", () => {
+    const checkboxElement = containerElement.querySelectorAll('[type="checkbox"]');
+
+    expect(checkboxElement.length).toBeGreaterThan(0);
+    expect(checkboxElement.length).toEqual(DATA.ingredients.length);
+  });
+
+  test("Should have a button element as last child and contain the word 'done'", () => {
+    const buttonElement = containerElement.querySelector("button:last-child");
+    
+    expect(buttonElement).toBeInTheDocument();
+    expect(buttonElement.textContent).toEqual("Done");
+  });
 });

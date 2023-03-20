@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const PrepareInstructionsWrapper = styled.div`
+export const RecipeTitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 
-  & iframe {
-    height: 50vh;
-    width: 70vh;
+  & h1 {
+    font-size: 4vw;
   }
 `;
