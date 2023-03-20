@@ -1,3 +1,3 @@
-import { Body } from './Body';
+import { Button } from './Button';
 
-export default Body;
+export default Button;

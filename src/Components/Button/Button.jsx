@@ -7,7 +7,7 @@ export const Button = () => {
 
   return (
     <ButtonWrapper
-      onClick={() => setShowSigninModal((prevState) => !prevState)}
+      onClick={() => setShowSigninModal(true)}
     >
       Sign in
     </ButtonWrapper>
