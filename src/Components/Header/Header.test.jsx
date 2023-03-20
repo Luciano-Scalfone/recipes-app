@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import FilterProvider from "../../context/FilterContext";
+import LoginProvider from "../../context/LoginContext";
 import MealsProvider from "../../context/MealsContext";
 import { Header } from "./Header";
 
@@ -10,7 +11,9 @@ describe("Header Component", () => {
     const { container } = render(
       <MealsProvider>
         <FilterProvider>
-          <Header />
+          <LoginProvider>
+            <Header />
+          </LoginProvider>
         </FilterProvider>
       </MealsProvider>
     );
@@ -55,9 +58,9 @@ describe("Header Component", () => {
   });
 
   test("Should have a 'sign in' button", () => {
-    const signInButton = screen.getByText('Sign in');
+    const signInButton = screen.getByText("Sign in");
 
     expect(signInButton).toBeInTheDocument();
-    expect(signInButton.tagName).toBe('BUTTON');
+    expect(signInButton.tagName).toBe("BUTTON");
   });
 });
