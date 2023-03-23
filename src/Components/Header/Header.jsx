@@ -26,7 +26,9 @@ export const Header = () => {
   return (
     <HeaderWrapper>
       <select name="filterClass" onChange={(e) => onFilterChange(e)}>
-        <option value="name" defaultValue>name</option>
+        <option value="name" defaultValue>
+          name
+        </option>
         <option value="first-letter">first letter</option>
         <option value="category">category</option>
         <option value="area">area</option>
@@ -40,10 +42,14 @@ export const Header = () => {
         type="text"
         placeholder="Big Mc"
       />
-      <button onClick={() => onFilterButtonClick()} type="button" className="filter-button">
+      <button
+        onClick={() => onFilterButtonClick()}
+        type="button"
+        className="filter-button"
+      >
         <SearchIcon />
       </button>
-
+      
       <Button />
     </HeaderWrapper>
   );

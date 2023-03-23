@@ -2,12 +2,12 @@ import React, { useContext } from "react";
 import Body from "../../Components/Body";
 import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
-import { Signin } from "../../Components/LoginModal/Signin";
+import Signin from "../../Components/LoginModal/Signin";
 import { LoginContext } from "../../context/LoginContext";
 import { HomeWrapper } from "./HomeStyles";
 
 const Home = () => {
-  const { showSigninModal } = useContext(LoginContext);
+  const { showSigninModal, showSignupModal } = useContext(LoginContext);
 
   return (
     <HomeWrapper data-testid="home-component">
@@ -15,6 +15,7 @@ const Home = () => {
       <Body />
       <Footer inHomePage />
       {showSigninModal && <Signin />}
+      {showSignupModal && <Signin />}
     </HomeWrapper>
   );
 };

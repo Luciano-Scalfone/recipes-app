@@ -47,6 +47,6 @@ export const HeaderWrapper = styled.header`
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-100%, 150%);
+    transform: translate(-100%, 100%);
   }
 `;
