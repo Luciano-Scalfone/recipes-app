@@ -1,0 +1,178 @@
+import { render, screen } from "@testing-library/react";
+import LoginProvider from "../../context/LoginContext";
+import Signup from "./Signup";
+
+describe("Signup Component", () => {
+  let signupComponent;
+
+  beforeEach(() => {
+    signupComponent = render(
+      <LoginProvider>
+        <Signup />
+      </LoginProvider>
+    ).container;
+  });
+
+  test("Should exists", () => {
+    expect(signupComponent).toBeDefined();
+  });
+
+  test("Should have a parent element with ClassName 'signup-wrapper'", () => {
+    const parentElement = signupComponent.querySelector(".signup-wrapper");
+
+    expect(parentElement).toBeInTheDocument();
+  });
+
+  test("Should have a close button like a div element", () => {
+    const divElement = signupComponent.querySelector(
+      ".signup-wrapper__cross-icon"
+    );
+    const crossIconElement = divElement.querySelector(".bi-x");
+
+    expect(crossIconElement).toBeInTheDocument();
+  });
+
+  describe("Full Name Input", () => {
+    let fullNameLabel;
+
+    beforeEach(() => {
+      fullNameLabel = screen.getByTestId("full-name-label");
+    });
+
+    test("Should label exists and is a label tag", () => {
+      expect(fullNameLabel).toBeInTheDocument();
+      expect(fullNameLabel.tagName).toBe("LABEL");
+    });
+
+    test("Should have a imput type text", () => {
+      const inputTypeTextElement =
+        fullNameLabel.querySelector("input[type=text]");
+
+      expect(inputTypeTextElement).toBeInTheDocument();
+    });
+
+    test("Should have in input a placeholder with text 'Full Name'", () => {
+      const inputTypeTextElement =
+        fullNameLabel.querySelector("input[type=text]");
+
+      expect(inputTypeTextElement.placeholder).toBe("Full Name");
+    });
+
+    test("Should have a person icon", () => {
+      const personIconElement = fullNameLabel.querySelector(".bi-person");
+
+      expect(personIconElement).toBeInTheDocument();
+    });
+  });
+
+  describe("Email Input", () => {
+    let emailLabel;
+
+    beforeEach(() => {
+      emailLabel = screen.getByTestId("email-label");
+    });
+
+    test("Should label exists and is a label tag", () => {
+      expect(emailLabel).toBeInTheDocument();
+      expect(emailLabel.tagName).toBe("LABEL");
+    });
+
+    test("Should have a imput type email", () => {
+      const inputTypeEmailElement =
+        emailLabel.querySelector("input[type=email]");
+
+      expect(inputTypeEmailElement).toBeInTheDocument();
+    });
+
+    test("Should have in input a placeholder with text 'Email'", () => {
+      const inputTypeEmailElement =
+        emailLabel.querySelector("input[type=email]");
+
+      expect(inputTypeEmailElement.placeholder).toBe("Email");
+    });
+
+    test("Should have a person icon", () => {
+      const envelopeIconElement = emailLabel.querySelector(".bi-envelope");
+
+      expect(envelopeIconElement).toBeInTheDocument();
+    });
+  });
+
+  describe("Password Input", () => {
+    let passwordLabel;
+
+    beforeEach(() => {
+      passwordLabel = screen.getByTestId("password-label");
+    });
+
+    test("Should label exists and is a label tag", () => {
+      expect(passwordLabel).toBeInTheDocument();
+      expect(passwordLabel.tagName).toBe("LABEL");
+    });
+
+    test("Should have a imput type password", () => {
+      const inputTypePasswordlElement =
+        passwordLabel.querySelector("input[type=password]");
+
+      expect(inputTypePasswordlElement).toBeInTheDocument();
+    });
+
+    test("Should have in input a placeholder with text 'Password'", () => {
+      const inputTypePasswordlElement =
+        passwordLabel.querySelector("input[type=password]");
+
+      expect(inputTypePasswordlElement.placeholder).toBe("Password");
+    });
+
+    test("Should have a Lock icon", () => {
+      const lockIconElement = passwordLabel.querySelector(".bi-lock");
+
+      expect(lockIconElement).toBeInTheDocument();
+    });
+    
+    test("Should have a OpenEye icon", () => {
+      const openEyeIconElement = passwordLabel.querySelector(".bi-eye");
+
+      expect(openEyeIconElement).toBeInTheDocument();
+    });
+  });
+
+  describe("Confirm Password Input", () => {
+    let confirmPasswordLabel;
+
+    beforeEach(() => {
+      confirmPasswordLabel = screen.getByTestId("confirm-password-label");
+    });
+
+    test("Should label exists and is a label tag", () => {
+      expect(confirmPasswordLabel).toBeInTheDocument();
+      expect(confirmPasswordLabel.tagName).toBe("LABEL");
+    });
+
+    test("Should have a imput type password", () => {
+      const inputTypePasswordlElement =
+        confirmPasswordLabel.querySelector("input[type=password]");
+
+      expect(inputTypePasswordlElement).toBeInTheDocument();
+    });
+
+    test("Should have in input a placeholder with text 'Confirm Password'", () => {
+      const inputTypePasswordlElement =
+        confirmPasswordLabel.querySelector("input[type=password]");
+
+      expect(inputTypePasswordlElement.placeholder).toBe("Confirm Password");
+    });
+
+    test("Should have a Lock icon", () => {
+      const lockIconElement = confirmPasswordLabel.querySelector(".bi-lock");
+
+      expect(lockIconElement).toBeInTheDocument();
+    });
+    
+    test("Should have a OpenEye icon", () => {
+      const openEyeIconElement = confirmPasswordLabel.querySelector(".bi-eye");
+
+      expect(openEyeIconElement).toBeInTheDocument();
+    });
+  });
+});
