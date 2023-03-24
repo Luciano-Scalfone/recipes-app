@@ -5,6 +5,7 @@ export const SigninWrapper = styled.div.attrs({ className: "signin-wrapper" })`
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    width: 100%;
 
     & .signin-wrapper__cross-icon {
        position absolute;

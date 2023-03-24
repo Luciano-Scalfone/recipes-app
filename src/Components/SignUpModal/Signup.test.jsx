@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import LoginProvider from "../../context/LoginContext";
 import Signup from "./Signup";
 
@@ -17,6 +17,13 @@ describe("Signup Component", () => {
     expect(signupComponent).toBeDefined();
   });
 
+  test("Should have a title like h4 element with text 'Sign up'", () => {
+    const h4Element = signupComponent.querySelectorAll("h4")[0];
+
+    expect(h4Element).toBeInTheDocument();
+    expect(h4Element.textContent).toBe("Sign up");
+  })
+
   test("Should have a parent element with ClassName 'signup-wrapper'", () => {
     const parentElement = signupComponent.querySelector(".signup-wrapper");
 
@@ -30,6 +37,21 @@ describe("Signup Component", () => {
     const crossIconElement = divElement.querySelector(".bi-x");
 
     expect(crossIconElement).toBeInTheDocument();
+  });
+
+  test("Should have h4 like last child with text 'Already have an account? Sign in'", () => {
+    const h4Element = signupComponent.querySelector("h4:last-child");
+
+    expect(h4Element).toBeInTheDocument();
+    expect(h4Element.textContent).toBe("Already have an account? Sign in");
+  });
+
+  test("Should have span element in h4 element with text 'Sign in'", () => {
+    const h4Element = signupComponent.querySelector("h4:last-child");
+    const spanElement = h4Element.querySelector("span");
+
+    expect(spanElement).toBeInTheDocument();
+    expect(spanElement.textContent).toBe("Sign in");
   });
 
   describe("Full Name Input", () => {
@@ -63,7 +85,7 @@ describe("Signup Component", () => {
 
       expect(personIconElement).toBeInTheDocument();
     });
-  });
+  }); 
 
   describe("Email Input", () => {
     let emailLabel;
@@ -111,15 +133,17 @@ describe("Signup Component", () => {
     });
 
     test("Should have a imput type password", () => {
-      const inputTypePasswordlElement =
-        passwordLabel.querySelector("input[type=password]");
+      const inputTypePasswordlElement = passwordLabel.querySelector(
+        "input[type=password]"
+      );
 
       expect(inputTypePasswordlElement).toBeInTheDocument();
     });
 
     test("Should have in input a placeholder with text 'Password'", () => {
-      const inputTypePasswordlElement =
-        passwordLabel.querySelector("input[type=password]");
+      const inputTypePasswordlElement = passwordLabel.querySelector(
+        "input[type=password]"
+      );
 
       expect(inputTypePasswordlElement.placeholder).toBe("Password");
     });
@@ -129,8 +153,17 @@ describe("Signup Component", () => {
 
       expect(lockIconElement).toBeInTheDocument();
     });
-    
-    test("Should have a OpenEye icon", () => {
+
+    test("Should have a slashedEye icon", () => {
+      const slashedEyeIconElement =
+        passwordLabel.querySelector(".bi-eye-slash");
+
+      expect(slashedEyeIconElement).toBeInTheDocument();
+    });
+
+    test("Should have a OpenEye icon when user click", () => {
+      const divElement = passwordLabel.querySelector("div");
+      fireEvent.click(divElement);
       const openEyeIconElement = passwordLabel.querySelector(".bi-eye");
 
       expect(openEyeIconElement).toBeInTheDocument();
@@ -150,15 +183,17 @@ describe("Signup Component", () => {
     });
 
     test("Should have a imput type password", () => {
-      const inputTypePasswordlElement =
-        confirmPasswordLabel.querySelector("input[type=password]");
+      const inputTypePasswordlElement = confirmPasswordLabel.querySelector(
+        "input[type=password]"
+      );
 
       expect(inputTypePasswordlElement).toBeInTheDocument();
     });
 
     test("Should have in input a placeholder with text 'Confirm Password'", () => {
-      const inputTypePasswordlElement =
-        confirmPasswordLabel.querySelector("input[type=password]");
+      const inputTypePasswordlElement = confirmPasswordLabel.querySelector(
+        "input[type=password]"
+      );
 
       expect(inputTypePasswordlElement.placeholder).toBe("Confirm Password");
     });
@@ -168,8 +203,17 @@ describe("Signup Component", () => {
 
       expect(lockIconElement).toBeInTheDocument();
     });
-    
-    test("Should have a OpenEye icon", () => {
+
+    test("Should have a slashedEye icon", () => {
+      const slashedEyeIconElement =
+        confirmPasswordLabel.querySelector(".bi-eye-slash");
+
+      expect(slashedEyeIconElement).toBeInTheDocument();
+    });
+
+    test("Should have a OpenEye icon when user click", () => {
+      const divElement = confirmPasswordLabel.querySelector("div");
+      fireEvent.click(divElement);
       const openEyeIconElement = confirmPasswordLabel.querySelector(".bi-eye");
 
       expect(openEyeIconElement).toBeInTheDocument();
