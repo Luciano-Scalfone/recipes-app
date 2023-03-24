@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const SigninWrapper = styled.div.attrs({ className: "signin-wrapper" })`
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 16px;
 
     & .signin-wrapper__cross-icon {
@@ -27,5 +28,20 @@ export const SigninWrapper = styled.div.attrs({ className: "signin-wrapper" })`
         outline: none;
         border: none;
         flex: 1;
+    }
+
+    & button {
+        width: 100%;
+        cursor: pointer;
+    }
+
+    & .signin-wrapper__sign-up {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    & .signin-wrapper__sign-up span {
+        color: blue;
+        cursor: pointer;
     }
 `;

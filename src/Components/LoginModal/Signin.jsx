@@ -1,9 +1,10 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import {
   CloseIcon,
   EnvelopeIcon,
   LockIcon,
   OpenEyeIcon,
+  SlashedEyeIcon,
 } from "../../assets/Icons";
 import { LoginContext } from "../../context/LoginContext";
 import { WithModal } from "../hoc/with-modal/WithModal";
@@ -13,6 +14,7 @@ const Signin = () => {
   const { setShowSigninModal, setShowSignupModal } = useContext(LoginContext);
   const emailRef = useRef();
   const passwordRef = useRef();
+  const [showPassword, setshowPassword] = useState(false);
 
   const handleSignupClick = () => {
     setShowSigninModal(false);
@@ -28,7 +30,7 @@ const Signin = () => {
         <CloseIcon />
       </div>
 
-      {/* <h4>Sign in</h4> */}
+      <h4>Sign in</h4>
 
       <label className="signin-wrapper__input-field">
         <EnvelopeIcon />
@@ -37,8 +39,14 @@ const Signin = () => {
 
       <label className="signin-wrapper__input-field">
         <LockIcon />
-        <input type="password" placeholder="Password" ref={passwordRef} />
-        <OpenEyeIcon />
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
+          ref={passwordRef}
+        />
+        <div onClick={() => setshowPassword(!showPassword)}>
+          {showPassword ? <OpenEyeIcon /> : <SlashedEyeIcon />}
+        </div>
       </label>
 
       <button
@@ -52,7 +60,7 @@ const Signin = () => {
         Sign in
       </button>
 
-      <h4>
+      <h4 className="signin-wrapper__sign-up">
         Dont have an account?{" "}
         <span onClick={handleSignupClick}>sign up now</span>
       </h4>
