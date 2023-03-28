@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import FilterProvider from "../../context/FilterContext";
 import MealsProvider from "../../context/MealsContext";
 import { PrepareRecipes } from "./PrepareRecipes";
@@ -6,14 +7,16 @@ import { PrepareRecipes } from "./PrepareRecipes";
 describe("PrepareRecipes Page", () => {
   let containerElement;
 
-  beforeEach(() => {
-    render(
-      <MealsProvider>
-        <FilterProvider>
-          <PrepareRecipes />
-        </FilterProvider>
-      </MealsProvider>
-    );
+  beforeEach(async () => {
+    await act(async () => {
+      render(
+        <MealsProvider>
+          <FilterProvider>
+            <PrepareRecipes />
+          </FilterProvider>
+        </MealsProvider>
+      );
+    });
 
     containerElement = screen.getByTestId("prepare-recipes");
   });
