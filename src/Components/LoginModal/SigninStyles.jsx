@@ -8,14 +8,6 @@ export const SigninWrapper = styled.div.attrs({ className: "signin-wrapper" })`
     width: 100%;
     height: 100%;
 
-    & .signin-wrapper__cross-icon {
-       position absolute;
-       right: 0;
-       top: 0;
-       transform: translate(-30%, 30%);
-       cursor: pointer;
-    }
-
     & .signin-wrapper__h4-title {
         font-size: 1.5rem;
     }

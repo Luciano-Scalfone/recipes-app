@@ -1,6 +1,5 @@
 import { useContext, useRef, useState } from "react";
 import {
-  CloseIcon,
   EnvelopeIcon,
   LockIcon,
   OpenEyeIcon,
@@ -44,13 +43,6 @@ const Signup = () => {
 
   return (
     <SignupWrapper>
-      <div
-        className="signup-wrapper__cross-icon"
-        onClick={() => setShowSignupModal(false)}
-      >
-        <CloseIcon />
-      </div>
-
       <h4>Sign up</h4>
 
       <Input

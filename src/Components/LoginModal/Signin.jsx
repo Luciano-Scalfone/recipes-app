@@ -1,6 +1,5 @@
 import { useContext, useRef, useState } from "react";
 import {
-  CloseIcon,
   EnvelopeIcon,
   LockIcon,
   OpenEyeIcon,
@@ -13,8 +12,7 @@ import { SigninWrapper } from "./SigninStyles";
 
 const Signin = () => {
   const { setShowSigninModal, setShowSignupModal } = useContext(LoginContext);
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const userRef = useRef({email: '', password: ''});
   const [showPassword, setshowPassword] = useState(false);
   const showPasswordComponent = (
     <div onClick={() => setshowPassword(!showPassword)}>
@@ -27,38 +25,36 @@ const Signin = () => {
     setShowSignupModal(true);
   };
 
+  const handleInputChanges = ({ target }) => {
+    userRef.current = { ...userRef.current, [target.name]: target.value };
+  };
+
   return (
     <SigninWrapper>
-      <div
-        className="signin-wrapper__cross-icon"
-        onClick={() => setShowSigninModal(false)}
-      >
-        <CloseIcon />
-      </div>
+      
 
       <h4 className="signin-wrapper__h4-title">Sign in</h4>
 
       <Input
         type="email"
         placeholder="Email"
-        ref={emailRef}
+        name="email"
+        handleChange={handleInputChanges}
         leftIcon={<EnvelopeIcon />}
       />
 
       <Input
         type={showPassword ? "text" : "password"}
         placeholder="Password"
-        ref={passwordRef}
+        name="password"
+        handleChange={handleInputChanges}
         leftIcon={<LockIcon />}
         rightIcon={showPasswordComponent}
       />
 
       <button
         onClick={() =>
-          console.log({
-            email: emailRef.current.value,
-            senha: passwordRef.current.value,
-          })
+          console.log(userRef.current)
         }
       >
         Sign in

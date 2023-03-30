@@ -9,6 +9,14 @@ export const WithModalWrapper = styled.div.attrs({className: 'with-modal-wrapper
     align-items: center;
     justify-content: center;
 
+    & .signin-wrapper__cross-icon {
+        position absolute;
+        right: 0;
+        top: 0;
+        transform: translate(-30%, 30%);
+        cursor: pointer;
+     }
+
     & .with-modal-wrapper__section {
         position relative;
         background-color: white;
