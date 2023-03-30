@@ -8,6 +8,7 @@ import {
 } from "../../assets/Icons";
 import { LoginContext } from "../../context/LoginContext";
 import { WithModal } from "../hoc/with-modal/WithModal";
+import Input from "../Input";
 import { SigninWrapper } from "./SigninStyles";
 
 const Signin = () => {
@@ -15,6 +16,11 @@ const Signin = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const [showPassword, setshowPassword] = useState(false);
+  const showPasswordComponent = (
+    <div onClick={() => setshowPassword(!showPassword)}>
+      {showPassword ? <OpenEyeIcon /> : <SlashedEyeIcon />}
+    </div>
+  );
 
   const handleSignupClick = () => {
     setShowSigninModal(false);
@@ -32,22 +38,20 @@ const Signin = () => {
 
       <h4 className="signin-wrapper__h4-title">Sign in</h4>
 
-      <label className="signin-wrapper__input-field">
-        <EnvelopeIcon />
-        <input type="email" placeholder="Email" ref={emailRef} />
-      </label>
+      <Input
+        type="email"
+        placeholder="Email"
+        ref={emailRef}
+        leftIcon={<EnvelopeIcon />}
+      />
 
-      <label className="signin-wrapper__input-field">
-        <LockIcon />
-        <input
-          type={showPassword ? "text" : "password"}
-          placeholder="Password"
-          ref={passwordRef}
-        />
-        <div onClick={() => setshowPassword(!showPassword)}>
-          {showPassword ? <OpenEyeIcon /> : <SlashedEyeIcon />}
-        </div>
-      </label>
+      <Input
+        type={showPassword ? "text" : "password"}
+        placeholder="Password"
+        ref={passwordRef}
+        leftIcon={<LockIcon />}
+        rightIcon={showPasswordComponent}
+      />
 
       <button
         onClick={() =>

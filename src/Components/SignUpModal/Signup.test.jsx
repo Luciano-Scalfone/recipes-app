@@ -22,7 +22,7 @@ describe("Signup Component", () => {
 
     expect(h4Element).toBeInTheDocument();
     expect(h4Element.textContent).toBe("Sign up");
-  })
+  });
 
   test("Should have a parent element with ClassName 'signup-wrapper'", () => {
     const parentElement = signupComponent.querySelector(".signup-wrapper");
@@ -52,6 +52,13 @@ describe("Signup Component", () => {
 
     expect(spanElement).toBeInTheDocument();
     expect(spanElement.textContent).toBe("Sign in");
+  });
+
+  test("Should have a button with text 'Create Account'", () => {
+    const buttonElement = signupComponent.querySelector("button");
+
+    expect(buttonElement).toBeInTheDocument();
+    expect(buttonElement.textContent).toBe("Create Account");
   });
 
   describe("Full Name Input", () => {
@@ -85,7 +92,7 @@ describe("Signup Component", () => {
 
       expect(personIconElement).toBeInTheDocument();
     });
-  }); 
+  });
 
   describe("Email Input", () => {
     let emailLabel;
