@@ -30,7 +30,7 @@ const Signin = () => {
         <CloseIcon />
       </div>
 
-      <h4>Sign in</h4>
+      <h4 className="signin-wrapper__h4-title">Sign in</h4>
 
       <label className="signin-wrapper__input-field">
         <EnvelopeIcon />
@@ -61,7 +61,7 @@ const Signin = () => {
       </button>
 
       <h4 className="signin-wrapper__sign-up">
-        Dont have an account?{" "}
+        Don't have an account?{" "}
         <span onClick={handleSignupClick}>sign up now</span>
       </h4>
     </SigninWrapper>
