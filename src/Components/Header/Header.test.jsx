@@ -12,7 +12,9 @@ describe("Header Component", () => {
       <MealsProvider>
         <FilterProvider>
           <LoginProvider>
-            <Header />
+            <LoginProvider>
+              <Header />
+            </LoginProvider>
           </LoginProvider>
         </FilterProvider>
       </MealsProvider>

@@ -15,6 +15,15 @@ describe("WithModal Component", () => {
     expect(withModalComponent).toBeDefined();
   });
 
+  // test("Should have a close button like a div element", () => {
+  //   const divElement = signupComponent.querySelector(
+  //     ".signup-wrapper__cross-icon"
+  //   );
+  //   const crossIconElement = divElement.querySelector(".bi-x");
+
+  //   expect(crossIconElement).toBeInTheDocument();
+  // });
+
   // test("Should have a section element with className 'with-modal-wrapper__section'", () => {
   //   const sectionElement = withModalComponent.querySelector(".with-modal-wrapper__section");
   //   console.log(sectionElement)

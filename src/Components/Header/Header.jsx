@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { SearchIcon } from "../../assets/Icons";
 import { FilterContext } from "../../context/FilterContext";
+import { LoginContext } from "../../context/LoginContext";
 import { FILTER_INITIAL_STATE } from "../../interfaces/filterInitialState";
 import { Button } from "../Button/Button";
 import { HeaderWrapper } from "./HeaderStyles";
@@ -9,6 +10,7 @@ import { HeaderWrapper } from "./HeaderStyles";
 export const Header = () => {
   const [filter, setFilter] = useState(FILTER_INITIAL_STATE);
   const { setActiveFilter } = useContext(FilterContext);
+  const { setShowSigninModal } = useContext(LoginContext);
 
   const onFilterChange = ({ target }) => {
     const { name, value } = target;
@@ -22,6 +24,10 @@ export const Header = () => {
   const onFilterButtonClick = () => {
     setActiveFilter(filter);
   };
+
+  const handleSigninButton = () => {
+    setShowSigninModal(true);
+  }
 
   return (
     <HeaderWrapper>
@@ -50,7 +56,7 @@ export const Header = () => {
         <SearchIcon />
       </button>
       
-      <Button />
+      <Button textContent="Sign in" handleOnClick={handleSigninButton}/>
     </HeaderWrapper>
   );
 };

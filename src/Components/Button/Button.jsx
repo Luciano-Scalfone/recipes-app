@@ -1,15 +1,11 @@
-import { useContext } from "react";
-import { LoginContext } from "../../context/LoginContext";
 import { ButtonWrapper } from "./ButtonStyles";
 
-export const Button = () => {
-  const { setShowSigninModal } = useContext(LoginContext);
-
+export const Button = ({textContent, handleOnClick}) => {
   return (
     <ButtonWrapper
-      onClick={() => setShowSigninModal(true)}
+      onClick={() => handleOnClick()}
     >
-      Sign in
+      {textContent}
     </ButtonWrapper>
   );
 };

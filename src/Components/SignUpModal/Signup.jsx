@@ -22,12 +22,12 @@ const Signup = () => {
     confirmPassword: "",
   });
   const showPasswordComponent = (
-    <div onClick={() => setShowPassword(!showPassword)}>
+    <div className="pointer" onClick={() => setShowPassword(!showPassword)}>
       {showPassword ? <OpenEyeIcon /> : <SlashedEyeIcon />}
     </div>
   );
   const showConfirmPasswordComponent = (
-    <div onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+    <div className="pointer" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
       {showConfirmPassword ? <OpenEyeIcon /> : <SlashedEyeIcon />}
     </div>
   );
@@ -43,7 +43,7 @@ const Signup = () => {
 
   return (
     <SignupWrapper>
-      <h4>Sign up</h4>
+      <h4 className="signup-wrapper__h4-title">Sign up</h4>
 
       <Input
         type="text"
@@ -51,6 +51,7 @@ const Signup = () => {
         name="fullName"
         handleChange={handleInputChanges}
         leftIcon={<PersonIcon />}
+        testId="full-name-label"
       />
 
       <Input
@@ -59,6 +60,7 @@ const Signup = () => {
         name="email"
         handleChange={handleInputChanges}
         leftIcon={<EnvelopeIcon />}
+        testId="email-label"
       />
 
       <Input
@@ -68,6 +70,7 @@ const Signup = () => {
         handleChange={handleInputChanges}
         leftIcon={<LockIcon />}
         rightIcon={showPasswordComponent}
+        testId="password-label"
       />
 
       <Input
@@ -77,14 +80,16 @@ const Signup = () => {
         handleChange={handleInputChanges}
         leftIcon={<LockIcon />}
         rightIcon={showConfirmPasswordComponent}
+        testId="confirm-password-label"
       />
 
       <button onClick={() => console.log(userRef.current)}>
         Create Account
       </button>
 
-      <h4>
-        Already have an account? <span onClick={handleSigninClick}>Sign in</span>
+      <h4 className="signup-wrapper__sign-in">
+        Already have an account?{" "}
+        <span onClick={handleSigninClick}>Sign in</span>
       </h4>
     </SignupWrapper>
   );

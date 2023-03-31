@@ -15,7 +15,7 @@ const Signin = () => {
   const userRef = useRef({email: '', password: ''});
   const [showPassword, setshowPassword] = useState(false);
   const showPasswordComponent = (
-    <div onClick={() => setshowPassword(!showPassword)}>
+    <div className="pointer" onClick={() => setshowPassword(!showPassword)}>
       {showPassword ? <OpenEyeIcon /> : <SlashedEyeIcon />}
     </div>
   );

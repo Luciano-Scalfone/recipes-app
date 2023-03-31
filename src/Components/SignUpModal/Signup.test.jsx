@@ -30,15 +30,6 @@ describe("Signup Component", () => {
     expect(parentElement).toBeInTheDocument();
   });
 
-  test("Should have a close button like a div element", () => {
-    const divElement = signupComponent.querySelector(
-      ".signup-wrapper__cross-icon"
-    );
-    const crossIconElement = divElement.querySelector(".bi-x");
-
-    expect(crossIconElement).toBeInTheDocument();
-  });
-
   test("Should have h4 like last child with text 'Already have an account? Sign in'", () => {
     const h4Element = signupComponent.querySelector("h4:last-child");
 

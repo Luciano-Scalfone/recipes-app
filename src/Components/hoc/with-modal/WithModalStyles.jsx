@@ -23,7 +23,6 @@ export const WithModalWrapper = styled.div.attrs({className: 'with-modal-wrapper
         border-radius: 5px;
         padding: 32px;
         width: 40%;
-        height: 40%;
         display: flex;
         flex-direction: column;
         align-items: center;
