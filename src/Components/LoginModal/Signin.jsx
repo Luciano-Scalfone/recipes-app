@@ -29,6 +29,10 @@ const Signin = () => {
     userRef.current = { ...userRef.current, [target.name]: target.value };
   };
 
+  // const handleLogInButton = async () => {
+
+  // }
+
   return (
     <SigninWrapper>
       
@@ -54,7 +58,7 @@ const Signin = () => {
 
       <button
         onClick={() =>
-          console.log(userRef.current)
+          userRef.current
         }
       >
         Sign in

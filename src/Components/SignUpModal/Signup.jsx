@@ -7,12 +7,13 @@ import {
   SlashedEyeIcon,
 } from "../../assets/Icons";
 import { LoginContext } from "../../context/LoginContext";
+import { fetchUser } from "../../services/fetchs";
 import { WithModal } from "../hoc/with-modal/WithModal";
 import Input from "../Input";
 import { SignupWrapper } from "./SignupStyles";
 
 const Signup = () => {
-  const { setShowSignupModal, setShowSigninModal } = useContext(LoginContext);
+  const { setShowSignupModal, setShowSigninModal, setIsLoged } = useContext(LoginContext);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const userRef = useRef({
@@ -21,6 +22,7 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+
   const showPasswordComponent = (
     <div className="pointer" onClick={() => setShowPassword(!showPassword)}>
       {showPassword ? <OpenEyeIcon /> : <SlashedEyeIcon />}
@@ -40,6 +42,16 @@ const Signup = () => {
     setShowSigninModal(true);
     setShowSignupModal(false);
   };
+
+  const handleSignUpClick = async () => {
+    const {fullName, email, password} = userRef.current;
+    const postUser = await fetchUser("http://localhost:8080/users", {fullName, email, password});
+
+    if(postUser === 201) {
+      setIsLoged(true);
+      setShowSignupModal(false);
+    }
+  }
 
   return (
     <SignupWrapper>
@@ -83,7 +95,7 @@ const Signup = () => {
         testId="confirm-password-label"
       />
 
-      <button onClick={() => console.log(userRef.current)}>
+      <button onClick={handleSignUpClick}>
         Create Account
       </button>
 

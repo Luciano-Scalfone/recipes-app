@@ -5,6 +5,7 @@ export const LoginContext = createContext();
 const LoginProvider = ({ children }) => {
   const [showSigninModal, setShowSigninModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [isLoged , setIsLoged] = useState(false);
 
   return (
     <LoginContext.Provider
@@ -13,6 +14,8 @@ const LoginProvider = ({ children }) => {
         setShowSigninModal,
         showSignupModal,
         setShowSignupModal,
+        isLoged,
+        setIsLoged,
       }}
     >
       {children}
