@@ -1,4 +1,5 @@
 import FilterProvider from "../../context/FilterContext";
+import LoginProvider from "../../context/LoginContext";
 import MealsProvider from "../../context/MealsContext";
 import renderWithRouter from "../../helpers/renderWithRouter";
 import Home from "./Home";
@@ -10,7 +11,9 @@ describe("Home Component", () => {
     homeRendered = renderWithRouter(
       <MealsProvider>
         <FilterProvider>
-          <Home />
+          <LoginProvider>
+            <Home />
+          </LoginProvider>
         </FilterProvider>
       </MealsProvider>
     );

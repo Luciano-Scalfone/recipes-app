@@ -21,7 +21,7 @@ export const HeaderWrapper = styled.header`
     }
   }
 
-  & select, button {
+  & select, .filter-button {
     background-color: rgba(245, 245, 245);
     height: 50%;
     border-radius: 5px 0 0 5px;
@@ -31,7 +31,7 @@ export const HeaderWrapper = styled.header`
     font-size: 2vh;
   }
 
-  & button {
+  & .filter-button {
     background-color: #FFE5AB;
     width: 3%;
     border-radius: 0 5px 5px 0;
@@ -41,5 +41,12 @@ export const HeaderWrapper = styled.header`
     &:active {
       filter: contrast(80%);
     }
+  }
+
+  & .button-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 100%);
   }
 `;

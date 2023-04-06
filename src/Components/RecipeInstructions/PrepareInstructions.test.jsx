@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import FilterProvider from "../../context/FilterContext";
+import MealsProvider from "../../context/MealsContext";
 import { PrepareInstructions } from "./PrepareInstructions";
 
 describe("PrepareInstructions Component", () => {
@@ -7,16 +9,18 @@ describe("PrepareInstructions Component", () => {
   const DATA = {
     name: "big_mac_image",
     videoLink: "some_link",
-    ingredients: [
-      "ingredient1",
-      "ingredient2",
-      "ingredient3",
-    ],
+    ingredients: ["ingredient1", "ingredient2", "ingredient3"],
   };
 
   beforeEach(async () => {
     await act(async () => {
-      render(<PrepareInstructions meal={DATA} />);
+      render(
+        <MealsProvider>
+          <FilterProvider>
+            <PrepareInstructions meal={DATA} />
+          </FilterProvider>
+        </MealsProvider>
+      );
     });
 
     containerElement = screen.getByTestId("prepare-instructions");
@@ -40,13 +44,14 @@ describe("PrepareInstructions Component", () => {
 
   test("Should have a props src and title in iframe element with correct data", () => {
     const videoElement = containerElement.querySelector("iframe");
-    
+
     expect(videoElement.title).toEqual(DATA.name);
     expect(videoElement.src).toEqual(`http://localhost/${DATA.videoLink}`);
   });
 
   test("Should have some checkbox input elements", () => {
-    const checkboxElement = containerElement.querySelectorAll('[type="checkbox"]');
+    const checkboxElement =
+      containerElement.querySelectorAll('[type="checkbox"]');
 
     expect(checkboxElement.length).toBeGreaterThan(0);
     expect(checkboxElement.length).toEqual(DATA.ingredients.length);
@@ -54,7 +59,7 @@ describe("PrepareInstructions Component", () => {
 
   test("Should have a button element as last child and contain the word 'done'", () => {
     const buttonElement = containerElement.querySelector("button:last-child");
-    
+
     expect(buttonElement).toBeInTheDocument();
     expect(buttonElement.textContent).toEqual("Done");
   });

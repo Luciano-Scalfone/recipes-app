@@ -21,3 +21,12 @@ export const fetchById = async (id) => {
     .then((response) => response.json())
     .then((data) => data.meals);
 };
+
+export const fetchUser = async (url, user) => {
+  return await fetch(url, {
+    method: "POST",
+    headers: { "Content-type": "application/json; charset=UTF-8" },
+    body: JSON.stringify(user),
+  })
+    .then((response) => response.json())
+};

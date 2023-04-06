@@ -3,13 +3,16 @@ import "./App.css";
 import FilterProvider from "./context/FilterContext";
 import MealsProvider from "./context/MealsContext";
 import { BrowserRouter } from "react-router-dom";
+import LoginProvider from "./context/LoginContext";
 
 function App() {
   return (
     <BrowserRouter>
-      <MealsProvider> 
+      <MealsProvider>
         <FilterProvider>
-          <Router />
+          <LoginProvider>
+            <Router />
+          </LoginProvider>
         </FilterProvider>
       </MealsProvider>
     </BrowserRouter>

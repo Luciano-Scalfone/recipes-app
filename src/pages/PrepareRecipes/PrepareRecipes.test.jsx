@@ -1,11 +1,22 @@
 import { render, screen } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
+import FilterProvider from "../../context/FilterContext";
+import MealsProvider from "../../context/MealsContext";
 import { PrepareRecipes } from "./PrepareRecipes";
 
 describe("PrepareRecipes Page", () => {
   let containerElement;
 
-  beforeEach(() => {
-    render(<PrepareRecipes />);
+  beforeEach(async () => {
+    await act(async () => {
+      render(
+        <MealsProvider>
+          <FilterProvider>
+            <PrepareRecipes />
+          </FilterProvider>
+        </MealsProvider>
+      );
+    });
 
     containerElement = screen.getByTestId("prepare-recipes");
   });
@@ -15,7 +26,8 @@ describe("PrepareRecipes Page", () => {
   });
 
   test("Should have a div element in first child with the testid 'prepare-instructions'", () => {
-    const elementDivByFirstChild = containerElement.querySelector("div:first-child");
+    const elementDivByFirstChild =
+      containerElement.querySelector("div:first-child");
     const elementBytestid = screen.getByTestId("prepare-instructions");
 
     expect(elementBytestid.isSameNode(elementDivByFirstChild)).toBeTruthy();
