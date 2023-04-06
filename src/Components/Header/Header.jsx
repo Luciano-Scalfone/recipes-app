@@ -1,17 +1,18 @@
 import { useContext, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
+import { useNavigate } from "react-router";
 import { PersonIcon, SearchIcon } from "../../assets/Icons";
 import { FilterContext } from "../../context/FilterContext";
 import { LoginContext } from "../../context/LoginContext";
 import { FILTER_INITIAL_STATE } from "../../interfaces/filterInitialState";
-import { Button } from "../Button/Button";
 import { HeaderWrapper } from "./HeaderStyles";
 
 export const Header = () => {
   const [filter, setFilter] = useState(FILTER_INITIAL_STATE);
   const { setActiveFilter } = useContext(FilterContext);
-  const { setShowSigninModal, setShowSignupModal, isLoggedIn } =
+  const { setShowSigninModal, setShowSignupModal, userAuthenticated } =
     useContext(LoginContext);
+  const navigate = useNavigate();
 
   const onFilterChange = ({ target }) => {
     const { name, value } = target;
@@ -32,6 +33,10 @@ export const Header = () => {
 
   const handleSignupButton = () => {
     setShowSignupModal(true);
+  };
+
+  const handlePersonIconClick = () => {
+    navigate(`/profile/${userAuthenticated}`);
   };
 
   return (
@@ -61,8 +66,10 @@ export const Header = () => {
         <SearchIcon />
       </button>
 
-      {isLoggedIn ? (
-        <PersonIcon />
+      {userAuthenticated ? (
+        <div onClick={handlePersonIconClick}>
+          <PersonIcon />
+        </div>
       ) : (
         <>
           <button onClick={handleSignupButton}>Create Account</button>

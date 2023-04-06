@@ -5,16 +5,13 @@ export const LoginContext = createContext();
 const LoginProvider = ({ children }) => {
   const [showSigninModal, setShowSigninModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userAuthenticated, setUserAuthenticated] = useState(false);
 
   useEffect(() => {
     const userToken = localStorage.getItem("userToken");
 
-    console.log(userToken);
-
     if (userToken) {
-      console.log('entrou no if');
-      setIsLoggedIn(true);
+      setUserAuthenticated(userToken);
     }
   }, [showSigninModal, showSignupModal]);
 
@@ -25,7 +22,7 @@ const LoginProvider = ({ children }) => {
         setShowSigninModal,
         showSignupModal,
         setShowSignupModal,
-        isLoggedIn,
+        userAuthenticated,
       }}
     >
       {children}

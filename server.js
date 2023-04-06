@@ -21,8 +21,8 @@ function createToken(payload) {
 
 // Verify the token
 function verifyToken(token) {
-  return jwt.verify(token, SECRET_KEY, (err, decode) =>
-    decode !== undefined ? decode : err
+  return jwt.verify(token, SECRET_KEY, (_, decode) =>
+    decode !== undefined ? decode : false
   );
 }
 
@@ -49,7 +49,7 @@ server.post("/auth/login", (req, res) => {
     return;
   }
 
-  const access_token = createToken({ email, password });
+  const access_token = createToken({ email, password, id });
   res.status(200).json({ access_token });
 });
 
@@ -67,8 +67,32 @@ server.post("/auth/register", (req, res) => {
   userdb.users.push({ id: userdb.users.length + 1, fullName, email, password });
   fs.writeFileSync("./db.json", JSON.stringify(userdb));
 
-  const access_token = createToken({ email, password });
+  const access_token = createToken({ email, password, id });
   res.status(200).json({ access_token });
+});
+
+server.get("/auth/user-profile", (req, res) => {
+  const { authentication } = req.headers;
+  
+  if(!authentication || !authentication.split(" ")[1]){
+    const status = 401;
+    const message = "No token provided";
+    res.status(status).json({ status, message });
+    return;
+  }
+
+  const userToken = authentication.split(" ")[1];
+  console.log("test",verifyToken(userToken));
+  if(!verifyToken(userToken)) {
+    const status = 404;
+    const message = "Invalid token";
+    res.status(status).json({ status, message });
+    return;
+  }
+  const { email } = verifyToken(userToken);
+  const {email: userEmail, fullName} = userdb.users.find(user => user.email === email);
+  
+  res.status(200).json({userEmail, fullName});
 });
 
 server.use(router);
