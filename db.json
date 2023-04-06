@@ -7,10 +7,11 @@
       "password": "bruno"
     },
     {
-      "id": 2,
-      "name": "nilson",
-      "email": "nilson@email.com",
-      "password": "nilson"
+      "id": 3,
+      "fullName": "luciano",
+      "email": "luciano@email",
+      "password": "1234"
     }
-  ]
+  ],
+  "done-recipes": []
 }

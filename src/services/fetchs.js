@@ -28,5 +28,5 @@ export const fetchUser = async (url, user) => {
     headers: { "Content-type": "application/json; charset=UTF-8" },
     body: JSON.stringify(user),
   })
-    .then((response) => response.status)
+    .then((response) => response.json())
 };

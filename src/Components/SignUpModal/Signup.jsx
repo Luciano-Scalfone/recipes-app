@@ -13,7 +13,7 @@ import Input from "../Input";
 import { SignupWrapper } from "./SignupStyles";
 
 const Signup = () => {
-  const { setShowSignupModal, setShowSigninModal, setIsLoged } = useContext(LoginContext);
+  const { setShowSignupModal, setShowSigninModal } = useContext(LoginContext);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const userRef = useRef({
@@ -29,7 +29,10 @@ const Signup = () => {
     </div>
   );
   const showConfirmPasswordComponent = (
-    <div className="pointer" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+    <div
+      className="pointer"
+      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+    >
       {showConfirmPassword ? <OpenEyeIcon /> : <SlashedEyeIcon />}
     </div>
   );
@@ -44,14 +47,18 @@ const Signup = () => {
   };
 
   const handleSignUpClick = async () => {
-    const {fullName, email, password} = userRef.current;
-    const postUser = await fetchUser("http://localhost:8080/users", {fullName, email, password});
+    const { fullName, email, password } = userRef.current;
+    const postUser = await fetchUser("http://localhost:8080/auth/register", {
+      fullName,
+      email,
+      password,
+    });
 
-    if(postUser === 201) {
-      setIsLoged(true);
+    if (postUser.access_token) {
+      localStorage.setItem("userToken", postUser.access_token)
       setShowSignupModal(false);
     }
-  }
+  };
 
   return (
     <SignupWrapper>
@@ -95,9 +102,7 @@ const Signup = () => {
         testId="confirm-password-label"
       />
 
-      <button onClick={handleSignUpClick}>
-        Create Account
-      </button>
+      <button onClick={handleSignUpClick}>Create Account</button>
 
       <h4 className="signup-wrapper__sign-in">
         Already have an account?{" "}

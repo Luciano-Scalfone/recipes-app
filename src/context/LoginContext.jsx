@@ -1,11 +1,22 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const LoginContext = createContext();
 
 const LoginProvider = ({ children }) => {
   const [showSigninModal, setShowSigninModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
-  const [isLoged , setIsLoged] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const userToken = localStorage.getItem("userToken");
+
+    console.log(userToken);
+
+    if (userToken) {
+      console.log('entrou no if');
+      setIsLoggedIn(true);
+    }
+  }, [showSigninModal, showSignupModal]);
 
   return (
     <LoginContext.Provider
@@ -14,8 +25,7 @@ const LoginProvider = ({ children }) => {
         setShowSigninModal,
         showSignupModal,
         setShowSignupModal,
-        isLoged,
-        setIsLoged,
+        isLoggedIn,
       }}
     >
       {children}
