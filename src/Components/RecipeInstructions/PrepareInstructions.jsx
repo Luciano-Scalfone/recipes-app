@@ -1,6 +1,9 @@
 import { useContext } from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../context/LoginContext";
 import { MealsContext } from "../../context/MealsContext";
+import { fetchPostData } from "../../services/fetchs";
 import RecipeTitle from "../RecipeTitle/RecipeTitle";
 import { PrepareInstructionsWrapper } from "./PrepareInstructionsStyles";
 
@@ -8,7 +11,8 @@ export const PrepareInstructions = ({ meal }) => {
   const { videoLink, name, ingredients, instructions, id } = meal;
   const [ingredientsChecked, setIngredientsChecked] = useState([]);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const { setRecipesMaked } = useContext(MealsContext);
+  const { userAuthenticated } = useContext(LoginContext);
+  const navigate = useNavigate();
 
   const isDoneButtonDisabled = () => {
     return ingredientsChecked?.every(
@@ -28,7 +32,8 @@ export const PrepareInstructions = ({ meal }) => {
   };
 
   const handleOnClickbutton = () => {
-    setRecipesMaked((prevState) => [...prevState, id] )
+    fetchPostData( "http://localhost:8080/auth/register-recipe", {token: userAuthenticated, mealID: id});
+    navigate('/');
   };
 
   useEffect(() => {

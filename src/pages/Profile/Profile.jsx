@@ -8,7 +8,8 @@ export const Profile = () => {
 
   useEffect(() => {
     (async () => {
-      const user = await getUserInformation(token);
+      const user = await getUserInformation(token, "profile");
+      // const recipesMaked = await getUserInformation(token, "recipes-maked");
       console.log(user);
     })()
   }, [])

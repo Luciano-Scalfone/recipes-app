@@ -41,6 +41,7 @@ function userAlreadyExists({ email }) {
 
 server.post("/auth/login", (req, res) => {
   const { email, password } = req.body;
+  const { id } = userdb.users.find((user) => user.email === email);
 
   if (!isAuthenticated({ email, password })) {
     const status = 401;
@@ -55,6 +56,7 @@ server.post("/auth/login", (req, res) => {
 
 server.post("/auth/register", (req, res) => {
   const { fullName, email, password } = req.body;
+  const id = userdb.users.length + 1;
 
   if (userAlreadyExists({ email })) {
     const status = 409;
@@ -63,8 +65,7 @@ server.post("/auth/register", (req, res) => {
     return;
   }
 
-
-  userdb.users.push({ id: userdb.users.length + 1, fullName, email, password });
+  userdb.users.push({ id , fullName, email, password });
   fs.writeFileSync("./db.json", JSON.stringify(userdb));
 
   const access_token = createToken({ email, password, id });
@@ -73,8 +74,8 @@ server.post("/auth/register", (req, res) => {
 
 server.get("/auth/user-profile", (req, res) => {
   const { authentication } = req.headers;
-  
-  if(!authentication || !authentication.split(" ")[1]){
+
+  if (!authentication || !authentication.split(" ")[1]) {
     const status = 401;
     const message = "No token provided";
     res.status(status).json({ status, message });
@@ -82,17 +83,76 @@ server.get("/auth/user-profile", (req, res) => {
   }
 
   const userToken = authentication.split(" ")[1];
-  console.log("test",verifyToken(userToken));
-  if(!verifyToken(userToken)) {
+
+  if (!verifyToken(userToken)) {
     const status = 404;
     const message = "Invalid token";
     res.status(status).json({ status, message });
     return;
   }
-  const { email } = verifyToken(userToken);
-  const {email: userEmail, fullName} = userdb.users.find(user => user.email === email);
-  
-  res.status(200).json({userEmail, fullName});
+  const { email, id } = verifyToken(userToken);
+  const { email: userEmail, fullName} = userdb.users.find(
+    (user) => user.email === email && user.id === id
+  );
+
+  res.status(200).json({ userEmail, fullName });
+});
+
+server.post("/auth/register-recipe", (req, res) => {
+  const { token, mealID } = req.body;
+
+  if ( !token ) {
+    const status = 401;
+    const message = "No token provided";
+    res.status(status).json({ status, message });
+    return;
+  }
+
+  if (!verifyToken(token)) {
+    const status = 404;
+    const message = "Invalid token";
+    res.status(status).json({ status, message });
+    return;
+  }
+
+  const { id } = verifyToken(token);
+  const recipe = userdb["done-recipes"].find((recipe) => recipe.id === mealID );
+
+  if(recipe) {
+    recipe.userId.push(id);
+    fs.writeFileSync("./db.json", JSON.stringify(userdb));
+  } else {
+    userdb["done-recipes"].push({id: mealID, userId: [id]});
+    fs.writeFileSync("./db.json", JSON.stringify(userdb));
+  }
+
+  const status = 200;
+  const message = "ok";
+  res.status(status).json({ status, message });
+});
+
+server.get("/auth/user-recipes-maked", (req, res) => {
+  const { authentication } = req.headers;
+
+  if (!authentication || !authentication.split(" ")[1]) {
+    const status = 401;
+    const message = "No token provided";
+    res.status(status).json({ status, message });
+    return;
+  }
+
+  const userToken = authentication.split(" ")[1];
+
+  if (!verifyToken(userToken)) {
+    const status = 404;
+    const message = "Invalid token";
+    res.status(status).json({ status, message });
+    return;
+  }
+  const { id } = verifyToken(userToken);
+  const recipesMaked = userdb["done-recipes"].map((recipe) => recipe.userId.includes(id) && recipe.id);
+
+  res.status(200).json(recipesMaked);
 });
 
 server.use(router);

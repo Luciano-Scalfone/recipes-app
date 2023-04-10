@@ -42,16 +42,16 @@ export const fetchByIDHelper = async (id) => {
   };
 };
 
-export const fetchUser = async (url, user) => {
+export const fetchPostData = async (url, data) => {
   return await fetch(url, {
     method: "POST",
     headers: { "Content-type": "application/json; charset=UTF-8" },
-    body: JSON.stringify(user),
+    body: JSON.stringify(data),
   }).then((response) => response.json());
 };
 
-export const getUserInformation = async (token) => {
-  const response = await fetch("http://localhost:8080/auth/user-profile", {
+export const getUserInformation = async (token, endPoint) => {
+  const response = await fetch(`http://localhost:8080/auth/user-${endPoint}`, {
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",

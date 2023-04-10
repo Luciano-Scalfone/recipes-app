@@ -1,17 +1,1 @@
-{
-  "users": [
-    {
-      "id": 1,
-      "fullName": "bruno",
-      "email": "bruno@email.com",
-      "password": "bruno"
-    },
-    {
-      "id": 3,
-      "fullName": "luciano",
-      "email": "luciano@email",
-      "password": "1234"
-    }
-  ],
-  "done-recipes": []
-}
+{"users":[{"id":1,"fullName":"bruno","email":"bruno@email.com","password":"bruno"},{"id":3,"fullName":"luciano","email":"luciano@email","password":"1234"},{"id":3,"fullName":"Leo de Freitas Kechi Paiva","email":"leokechi61@gmail.com","password":"123456"},{"id":4,"fullName":"Leo de Freitas Kechi Paiva","email":"leokechi@gmail.com","password":"leo1407"}],"done-recipes":[{"id":"53065","userId":[4,1]},{"id":"53060","userId":[1]}]}
