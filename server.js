@@ -65,7 +65,7 @@ server.post("/auth/register", (req, res) => {
     return;
   }
 
-  userdb.users.push({ id , fullName, email, password });
+  userdb.users.push({ id, fullName, email, password });
   fs.writeFileSync("./db.json", JSON.stringify(userdb));
 
   const access_token = createToken({ email, password, id });
@@ -91,7 +91,7 @@ server.get("/auth/user-profile", (req, res) => {
     return;
   }
   const { email, id } = verifyToken(userToken);
-  const { email: userEmail, fullName} = userdb.users.find(
+  const { email: userEmail, fullName } = userdb.users.find(
     (user) => user.email === email && user.id === id
   );
 
@@ -101,7 +101,7 @@ server.get("/auth/user-profile", (req, res) => {
 server.post("/auth/register-recipe", (req, res) => {
   const { token, mealID } = req.body;
 
-  if ( !token ) {
+  if (!token) {
     const status = 401;
     const message = "No token provided";
     res.status(status).json({ status, message });
@@ -116,13 +116,13 @@ server.post("/auth/register-recipe", (req, res) => {
   }
 
   const { id } = verifyToken(token);
-  const recipe = userdb["done-recipes"].find((recipe) => recipe.id === mealID );
+  const recipe = userdb["done-recipes"].find((recipe) => recipe.id === mealID);
 
-  if(recipe) {
+  if (recipe) {
     recipe.userId.push(id);
     fs.writeFileSync("./db.json", JSON.stringify(userdb));
   } else {
-    userdb["done-recipes"].push({id: mealID, userId: [id]});
+    userdb["done-recipes"].push({ id: mealID, userId: [id] });
     fs.writeFileSync("./db.json", JSON.stringify(userdb));
   }
 
@@ -150,7 +150,9 @@ server.get("/auth/user-recipes-maked", (req, res) => {
     return;
   }
   const { id } = verifyToken(userToken);
-  const recipesMaked = userdb["done-recipes"].map((recipe) => recipe.userId.includes(id) && recipe.id);
+  const recipesMaked = userdb["done-recipes"].map(
+    (recipe) => recipe.userId.includes(id) && recipe.id
+  );
 
   res.status(200).json(recipesMaked);
 });

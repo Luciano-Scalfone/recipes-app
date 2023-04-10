@@ -16,12 +16,14 @@ const LoginProvider = ({ children }) => {
 
     if (userToken) {
       (async () => {
-        const recipesMaked = await getUserInformation(userToken, "recipes-maked")
-          .then(data => data);
-    
-          setRecipesMaked(recipesMaked);
+        const recipesMaked = await getUserInformation(
+          userToken,
+          "recipes-maked"
+        ).then((data) => data);
+
+        setRecipesMaked(recipesMaked);
       })();
-      
+
       setUserAuthenticated(userToken);
     }
   }, [showSigninModal, showSignupModal]);

@@ -10,7 +10,7 @@ export const Cards = ({ name, imageSrc, id, onCardClick }) => {
 
   useEffect(() => {
     setRenderPill(recipesMaked?.includes(id));
-  }, []);
+  }, [recipesMaked]);
 
   return (
     <CardWrapper data-testid="cards-element" onClick={() => onCardClick(id)}>

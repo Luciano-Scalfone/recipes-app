@@ -55,7 +55,7 @@ export const getUserInformation = async (token, endPoint) => {
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "Authentication": `Bearer ${token}`,
+      Authentication: `Bearer ${token}`,
     },
   });
   const data = response.json();
