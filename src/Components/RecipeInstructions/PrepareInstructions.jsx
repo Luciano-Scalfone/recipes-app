@@ -1,6 +1,9 @@
 import { useContext } from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../context/LoginContext";
 import { MealsContext } from "../../context/MealsContext";
+import { fetchPostData, getUserInformation } from "../../services/fetchs";
 import RecipeTitle from "../RecipeTitle/RecipeTitle";
 import { PrepareInstructionsWrapper } from "./PrepareInstructionsStyles";
 
@@ -8,7 +11,9 @@ export const PrepareInstructions = ({ meal }) => {
   const { videoLink, name, ingredients, instructions, id } = meal;
   const [ingredientsChecked, setIngredientsChecked] = useState([]);
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const { userAuthenticated } = useContext(LoginContext);
   const { setRecipesMaked } = useContext(MealsContext);
+  const navigate = useNavigate();
 
   const isDoneButtonDisabled = () => {
     return ingredientsChecked?.every(
@@ -28,7 +33,11 @@ export const PrepareInstructions = ({ meal }) => {
   };
 
   const handleOnClickbutton = () => {
-    setRecipesMaked((prevState) => [...prevState, id] )
+    fetchPostData("http://localhost:8080/auth/register-recipe", {
+      token: userAuthenticated,
+      mealID: id,
+    });
+    navigate("/");
   };
 
   useEffect(() => {
@@ -48,6 +57,19 @@ export const PrepareInstructions = ({ meal }) => {
 
     setButtonDisabled(!disabled);
   }, [ingredientsChecked]);
+
+  useEffect(() => {
+    return () => {
+      (async () => {
+        const mealsMaked = await getUserInformation(
+          userAuthenticated,
+          "recipes-maked"
+        ).then((data) => data);
+
+        setRecipesMaked(mealsMaked);
+      })();
+    };
+  });
 
   return (
     <PrepareInstructionsWrapper
@@ -83,7 +105,9 @@ export const PrepareInstructions = ({ meal }) => {
           return <li key={`instruction-${index + 1}`}>{instruction}</li>;
         })}
       </ol>
-      <button disabled={buttonDisabled} onClick={handleOnClickbutton}>Done</button>
+      <button disabled={buttonDisabled} onClick={handleOnClickbutton}>
+        Done
+      </button>
     </PrepareInstructionsWrapper>
   );
 };

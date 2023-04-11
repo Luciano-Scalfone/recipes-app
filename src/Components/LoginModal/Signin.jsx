@@ -9,7 +9,7 @@ import { LoginContext } from "../../context/LoginContext";
 import { WithModal } from "../hoc/with-modal/WithModal";
 import Input from "../Input";
 import { SigninWrapper } from "./SigninStyles";
-import { fetchUser } from "../../services/fetchs";
+import { fetchPostData } from "../../services/fetchs";
 
 const Signin = () => {
   const { setShowSigninModal, setShowSignupModal } = useContext(LoginContext);
@@ -33,7 +33,7 @@ const Signin = () => {
 
   const handleLogInButton = async () => {
     const { email, password } = userRef.current;
-    const postUser = await fetchUser("http://localhost:8080/auth/login", {
+    const postUser = await fetchPostData("http://localhost:8080/auth/login", {
       email,
       password,
     });

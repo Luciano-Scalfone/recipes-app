@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Footer } from "../../Components/Footer/Footer";
 import { MealsDetailsWrapper } from "./MealsDetailsStyles";
 import { CardDetails } from "../../Components/CardDetails/CardDetails";
-import { fetchByIDHelper } from "../../helpers/fetchByIDHeHelper";
+import { fetchByIDHelper } from "../../services/fetchs";
 
 export const MealsDetails = () => {
   const { id } = useParams();
@@ -14,8 +14,6 @@ export const MealsDetails = () => {
     const fetchRecipe = async () => {
       const recipe = await fetchByIDHelper(id);
       setMeal(recipe);
-      console.log('mealdetails', meal)
-      console.log(recipe)
     };
 
     fetchRecipe();

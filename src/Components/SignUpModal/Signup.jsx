@@ -7,7 +7,7 @@ import {
   SlashedEyeIcon,
 } from "../../assets/Icons";
 import { LoginContext } from "../../context/LoginContext";
-import { fetchUser } from "../../services/fetchs";
+import { fetchPostData } from "../../services/fetchs";
 import { WithModal } from "../hoc/with-modal/WithModal";
 import Input from "../Input";
 import { SignupWrapper } from "./SignupStyles";
@@ -48,7 +48,7 @@ const Signup = () => {
 
   const handleSignUpClick = async () => {
     const { fullName, email, password } = userRef.current;
-    const postUser = await fetchUser("http://localhost:8080/auth/register", {
+    const postUser = await fetchPostData("http://localhost:8080/auth/register", {
       fullName,
       email,
       password,
