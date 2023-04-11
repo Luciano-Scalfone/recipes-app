@@ -33,8 +33,11 @@ export const PrepareInstructions = ({ meal }) => {
   };
 
   const handleOnClickbutton = () => {
-    fetchPostData( "http://localhost:8080/auth/register-recipe", {token: userAuthenticated, mealID: id});
-    navigate('/');
+    fetchPostData("http://localhost:8080/auth/register-recipe", {
+      token: userAuthenticated,
+      mealID: id,
+    });
+    navigate("/");
   };
 
   useEffect(() => {
@@ -54,6 +57,19 @@ export const PrepareInstructions = ({ meal }) => {
 
     setButtonDisabled(!disabled);
   }, [ingredientsChecked]);
+
+  useEffect(() => {
+    return () => {
+      (async () => {
+        const mealsMaked = await getUserInformation(
+          userAuthenticated,
+          "recipes-maked"
+        ).then((data) => data);
+
+        setRecipesMaked(mealsMaked);
+      })();
+    };
+  });
 
   return (
     <PrepareInstructionsWrapper
@@ -89,7 +105,9 @@ export const PrepareInstructions = ({ meal }) => {
           return <li key={`instruction-${index + 1}`}>{instruction}</li>;
         })}
       </ol>
-      <button disabled={buttonDisabled} onClick={handleOnClickbutton}>Done</button>
+      <button disabled={buttonDisabled} onClick={handleOnClickbutton}>
+        Done
+      </button>
     </PrepareInstructionsWrapper>
   );
 };

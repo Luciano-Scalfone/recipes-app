@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router";
 import { Cards } from "../../Components/Cards/Cards";
 import { MealsContext } from "../../context/MealsContext";
