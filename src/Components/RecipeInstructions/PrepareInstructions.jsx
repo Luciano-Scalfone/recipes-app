@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext";
 import { MealsContext } from "../../context/MealsContext";
-import { fetchPostData } from "../../services/fetchs";
+import { fetchPostData, getUserInformation } from "../../services/fetchs";
 import RecipeTitle from "../RecipeTitle/RecipeTitle";
 import { PrepareInstructionsWrapper } from "./PrepareInstructionsStyles";
 
@@ -12,6 +12,7 @@ export const PrepareInstructions = ({ meal }) => {
   const [ingredientsChecked, setIngredientsChecked] = useState([]);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const { userAuthenticated } = useContext(LoginContext);
+  const { setRecipesMaked } = useContext(MealsContext);
   const navigate = useNavigate();
 
   const isDoneButtonDisabled = () => {
