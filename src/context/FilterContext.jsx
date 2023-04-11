@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { fetchAllCategories } from "../services/fetchs";
+import { fetchAllCategories } from "../services/fetchs.js";
 import { MealsContext } from "./MealsContext";
-import { FILTER_INITIAL_STATE } from "../interfaces/filterInitialState";
+import { FILTER_INITIAL_STATE } from "../interfaces/filterInitialState.js";
 
 export const FilterContext = createContext();
 
