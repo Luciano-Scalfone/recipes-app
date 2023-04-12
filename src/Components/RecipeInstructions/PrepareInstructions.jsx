@@ -21,6 +21,7 @@ export const PrepareInstructions = ({ meal }) => {
     );
   };
 
+  // TODO: refactor this state to use useRef
   const handleCheckboxClick = (event) => {
     const filteredIngredients = ingredientsChecked.filter(
       (ingredient) => ingredient.ingredientName !== event.target.id
@@ -69,7 +70,7 @@ export const PrepareInstructions = ({ meal }) => {
         setRecipesMaked(mealsMaked);
       })();
     };
-  });
+  }, []);
 
   return (
     <PrepareInstructionsWrapper

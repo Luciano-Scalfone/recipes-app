@@ -5,7 +5,7 @@ import { MealsContext } from "../../context/MealsContext";
 import { getUserInformation } from "../../services/fetchs";
 import { ProfileWrapper } from "./ProfileStyles";
 
-export const Profile = () => {
+const Profile = () => {
   const token = useParams().id;
   const [ userDetails, setUserDetails ] = useState({});
   const { meals, recipesMaked } = useContext(MealsContext);
@@ -13,11 +13,11 @@ export const Profile = () => {
   useEffect(() => {
     (async () => {
       const user = await getUserInformation(token, "profile");
-     
+
       setUserDetails({ ...user});
     })();
   }, []);
- 
+
   return (
     <ProfileWrapper>
       <h1>Recipes Maked</h1>
@@ -32,3 +32,5 @@ export const Profile = () => {
     </ProfileWrapper>
   );
 };
+
+export default Profile;

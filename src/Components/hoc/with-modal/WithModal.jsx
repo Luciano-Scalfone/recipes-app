@@ -7,6 +7,8 @@ export const WithModal = (Component) => {
   const ComponentWithModal = () => {
     const { setShowSigninModal, setShowSignupModal } = useContext(LoginContext);
 
+    console.log('signin');
+
     return (
       <WithModalWrapper>
         <section className="with-modal-wrapper__section">

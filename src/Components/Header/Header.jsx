@@ -1,30 +1,23 @@
-import { useContext, useState } from "react";
-import { DebounceInput } from "react-debounce-input";
+import { useContext, useRef } from "react";
 import { useNavigate } from "react-router";
 import { PersonIcon, SearchIcon } from "../../assets/Icons";
 import { FilterContext } from "../../context/FilterContext";
 import { LoginContext } from "../../context/LoginContext";
-import { FILTER_INITIAL_STATE } from "../../interfaces/filterInitialState";
 import { HeaderWrapper } from "./HeaderStyles";
 
 export const Header = () => {
-  const [filter, setFilter] = useState(FILTER_INITIAL_STATE);
   const { setActiveFilter } = useContext(FilterContext);
   const { setShowSigninModal, setShowSignupModal, userAuthenticated } =
     useContext(LoginContext);
   const navigate = useNavigate();
-
-  const onFilterChange = ({ target }) => {
-    const { name, value } = target;
-
-    setFilter({
-      ...filter,
-      [name]: value,
-    });
-  };
+  const filterRef = useRef(null);
+  const selectRef = useRef(null);
 
   const onFilterButtonClick = () => {
-    setActiveFilter(filter);
+    setActiveFilter({
+      filterClass: selectRef.current.value,
+      filterBy: filterRef.current.value,
+    });
   };
 
   const handleSigninButton = () => {
@@ -41,7 +34,7 @@ export const Header = () => {
 
   return (
     <HeaderWrapper>
-      <select name="filterClass" onChange={(e) => onFilterChange(e)}>
+      <select name="filterClass" ref={selectRef}>
         <option value="name" defaultValue>
           name
         </option>
@@ -50,14 +43,7 @@ export const Header = () => {
         <option value="area">area</option>
         <option value="ingredient">ingredient</option>
       </select>
-      <DebounceInput
-        minLength={0}
-        debounceTimeout={1000}
-        name="filterBy"
-        onChange={(e) => onFilterChange(e)}
-        type="text"
-        placeholder="Big Mc"
-      />
+      <input ref={filterRef} name="filterBy" type="text" placeholder="Big Mc" />
       <button
         onClick={() => onFilterButtonClick()}
         type="button"
