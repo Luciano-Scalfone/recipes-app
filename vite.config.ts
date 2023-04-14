@@ -15,4 +15,8 @@ export default defineConfig({
       exclude: ["node_modules/", "src/setupTests.js"],
     },
   },
+  server: {
+    open: true,
+    port: 3000,
+  },
 });

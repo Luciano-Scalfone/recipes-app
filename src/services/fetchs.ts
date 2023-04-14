@@ -4,8 +4,9 @@ import {
   handleIntruction,
   handleLink,
 } from "../helpers/fetchByIDHeHelper";
+import { MealsType } from "../interfaces/filterInitialState";
 
-export const fetchAllCategories = async (filterClass, filterBy) => {
+export const fetchAllCategories = async <T>(filterClass: string, filterBy: string): Promise<T> => {
   const { filterParams, queryParams } = fetchURLSetter(filterClass);
   let searchTerm = searchParamSetter(filterClass, filterBy);
 
@@ -19,7 +20,7 @@ export const fetchAllCategories = async (filterClass, filterBy) => {
   return fetchAPI;
 };
 
-const fetchById = async (id) => {
+const fetchById = async <T>(id: string): Promise<T> => {
   return await fetch(
     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
   )
@@ -27,8 +28,9 @@ const fetchById = async (id) => {
     .then((data) => data.meals);
 };
 
-export const fetchByIDHelper = async (id) => {
-  const data = await fetchById(id);
+export const fetchByIDHelper = async (id: string): Promise<MealsType> => {
+  // TODO: change any type
+  const data = await fetchById<any>(id);
 
   return {
     id,
@@ -42,7 +44,7 @@ export const fetchByIDHelper = async (id) => {
   };
 };
 
-export const fetchPostData = async (url, data) => {
+export const fetchPostData = async <T, D>(url: string, data: D): Promise<T> => {
   return await fetch(url, {
     method: "POST",
     headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -50,7 +52,7 @@ export const fetchPostData = async (url, data) => {
   }).then((response) => response.json());
 };
 
-export const getUserInformation = async (token, endPoint) => {
+export const getUserInformation = async <T>(token: string, endPoint: string): Promise<T> => {
   const response = await fetch(`http://localhost:8080/auth/user-${endPoint}`, {
     method: "GET",
     headers: {
