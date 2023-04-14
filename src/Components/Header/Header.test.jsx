@@ -1,20 +1,19 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import FilterProvider from "../../context/FilterContext";
 import LoginProvider from "../../context/LoginContext";
 import MealsProvider from "../../context/MealsContext";
+import renderWithRouter from "../../helpers/renderWithRouter";
 import { Header } from "./Header";
 
 describe("Header Component", () => {
   let headerComponent;
 
   beforeEach(() => {
-    const { container } = render(
+    const { container } = renderWithRouter(
       <MealsProvider>
         <FilterProvider>
           <LoginProvider>
-            <LoginProvider>
-              <Header />
-            </LoginProvider>
+            <Header />
           </LoginProvider>
         </FilterProvider>
       </MealsProvider>

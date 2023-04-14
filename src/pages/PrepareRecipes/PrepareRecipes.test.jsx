@@ -3,16 +3,20 @@ import { act } from "react-dom/test-utils";
 import FilterProvider from "../../context/FilterContext";
 import MealsProvider from "../../context/MealsContext";
 import { PrepareRecipes } from "./PrepareRecipes";
+import LoginProvider from "../../context/LoginContext";
+import renderWithRouter from "../../helpers/renderWithRouter";
 
 describe("PrepareRecipes Page", () => {
   let containerElement;
 
   beforeEach(async () => {
     await act(async () => {
-      render(
+      renderWithRouter(
         <MealsProvider>
           <FilterProvider>
-            <PrepareRecipes />
+            <LoginProvider>
+              <PrepareRecipes />
+            </LoginProvider>
           </FilterProvider>
         </MealsProvider>
       );

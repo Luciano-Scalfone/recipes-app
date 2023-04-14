@@ -3,6 +3,8 @@ import { act } from "react-dom/test-utils";
 import FilterProvider from "../../context/FilterContext";
 import MealsProvider from "../../context/MealsContext";
 import { PrepareInstructions } from "./PrepareInstructions";
+import LoginProvider from "../../context/LoginContext";
+import renderWithRouter from "../../helpers/renderWithRouter";
 
 describe("PrepareInstructions Component", () => {
   let containerElement;
@@ -14,10 +16,12 @@ describe("PrepareInstructions Component", () => {
 
   beforeEach(async () => {
     await act(async () => {
-      render(
+      renderWithRouter(
         <MealsProvider>
           <FilterProvider>
-            <PrepareInstructions meal={DATA} />
+            <LoginProvider>
+              <PrepareInstructions meal={DATA} />
+            </LoginProvider>
           </FilterProvider>
         </MealsProvider>
       );
@@ -46,7 +50,7 @@ describe("PrepareInstructions Component", () => {
     const videoElement = containerElement.querySelector("iframe");
 
     expect(videoElement.title).toEqual(DATA.name);
-    expect(videoElement.src).toEqual(`http://localhost/${DATA.videoLink}`);
+    expect(videoElement.src).toEqual(`http://localhost:3000/${DATA.videoLink}`);
   });
 
   test("Should have some checkbox input elements", () => {

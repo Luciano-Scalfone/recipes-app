@@ -2,6 +2,7 @@ import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import LoginProvider from "../../context/LoginContext";
 import { Button } from "./Button";
+import MealsProvider from "../../context/MealsContext";
 
 describe("Button Component", () => {
   let buttonComponent;
@@ -9,9 +10,11 @@ describe("Button Component", () => {
   beforeEach(async () => {
     await act(() => {
       buttonComponent = render(
-        <LoginProvider>
-          <Button />
-        </LoginProvider>
+        <MealsProvider>
+          <LoginProvider>
+            <Button />
+          </LoginProvider>
+        </MealsProvider>
       ).container;
     });
   });

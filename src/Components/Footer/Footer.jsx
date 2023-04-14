@@ -1,10 +1,8 @@
-import { memo } from 'react';
-import { GithubIcon } from '../../assets/Icons';
+import { memo } from "react";
+import { GithubIcon } from "../../assets/Icons";
 import { FooterWrapper } from "./FooterStyles";
 
 export const Footer = memo(({ inHomePage }) => {
-  console.log('footer');
-
   return (
     <FooterWrapper inHomePage={inHomePage}>
       <h3>

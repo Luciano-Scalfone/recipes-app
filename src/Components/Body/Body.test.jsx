@@ -3,7 +3,10 @@ import { act } from "react-dom/test-utils";
 import FilterProvider from "../../context/FilterContext";
 import MealsProvider from "../../context/MealsContext";
 import renderWithRouter from "../../helpers/renderWithRouter";
+import * as mocks from "../../services/fetchs";
 import { Body } from "./Body";
+import { vi } from "vitest";
+
 
 describe("Body Component", () => {
   const data = [
@@ -20,8 +23,8 @@ describe("Body Component", () => {
   ];
 
   beforeEach(async () => {
-    const mockFunction = require("../../services/fetchs");
-    mockFunction.fetchAllCategories = jest.fn().mockReturnValue(data);
+    const mockFunction = mocks;
+    mockFunction.fetchAllCategories = vi.fn().mockReturnValue(data);
 
     await act(async () => {
       renderWithRouter(

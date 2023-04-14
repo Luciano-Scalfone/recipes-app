@@ -1,15 +1,18 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import LoginProvider from "../../context/LoginContext";
 import Signup from "./Signup";
+import MealsProvider from "../../context/MealsContext";
 
 describe("Signup Component", () => {
   let signupComponent;
 
   beforeEach(() => {
     signupComponent = render(
-      <LoginProvider>
-        <Signup />
-      </LoginProvider>
+      <MealsProvider>
+        <LoginProvider>
+          <Signup />
+        </LoginProvider>
+      </MealsProvider>
     ).container;
   });
 

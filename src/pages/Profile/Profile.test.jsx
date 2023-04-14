@@ -1,11 +1,18 @@
-import { render } from "@testing-library/react";
-import { Profile } from "./Profile";
+import Profile from "./Profile";
+import renderWithRouter from "../../helpers/renderWithRouter";
+import MealsProvider from "../../context/MealsContext";
 
 describe("Profile Page", () => {
   let profileComponent;
 
   beforeEach(() => {
-    profileComponent = render(<Profile />).container;
+    const component = renderWithRouter(
+      <MealsProvider>
+        <Profile />
+      </MealsProvider>
+    );
+
+    profileComponent = component.container;
   });
 
   test("Should exists", () => {
