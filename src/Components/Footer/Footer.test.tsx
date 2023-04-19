@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { Footer } from "./Footer";
 
 describe("Footer Component", () => {
-  let footerElement;
+  let footerElement: HTMLElement;
 
   beforeEach(() => {
     const { container } = render(<Footer />);

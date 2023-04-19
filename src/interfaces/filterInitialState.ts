@@ -13,3 +13,19 @@ export type MealsType = {
   ingredients: string[];
   videoLink: string;
 };
+
+export type CardType = { 
+  name: string; 
+  imageSrc: string; 
+  id: string; 
+  onCardClick: (id: string) => void;
+};
+
+export type InputTargetType = {
+  target: HTMLInputElement;
+};
+
+export type UserType = {
+  email: string;
+  password: string;
+}

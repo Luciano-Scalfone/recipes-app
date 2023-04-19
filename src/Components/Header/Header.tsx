@@ -5,37 +5,38 @@ import { FilterContext } from "../../context/FilterContext";
 import { LoginContext } from "../../context/LoginContext";
 import { HeaderWrapper } from "./HeaderStyles";
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const { setActiveFilter } = useContext(FilterContext);
   const { setShowSigninModal, setShowSignupModal, userAuthenticated } =
     useContext(LoginContext);
   const navigate = useNavigate();
-  const filterRef = useRef(null);
-  const selectRef = useRef(null);
+  const filterRef = useRef<HTMLInputElement>(null);
+  const selectRef = useRef<HTMLSelectElement>(null);
 
-  const onFilterButtonClick = () => {
-    setActiveFilter({
-      filterClass: selectRef.current.value,
-      filterBy: filterRef.current.value,
-    });
+  const onFilterButtonClick = (): void => {
+    if (selectRef.current && filterRef.current)
+      setActiveFilter({
+        filterClass: selectRef.current.value,
+        filterBy: filterRef.current.value,
+      });
   };
 
-  const handleSigninButton = () => {
+  const handleSigninButton = (): void => {
     setShowSigninModal(true);
   };
 
-  const handleSignupButton = () => {
+  const handleSignupButton = (): void => {
     setShowSignupModal(true);
   };
 
-  const handlePersonIconClick = () => {
+  const handlePersonIconClick = (): void => {
     navigate(`/profile/${userAuthenticated}`);
   };
 
   return (
     <HeaderWrapper>
       <select name="filterClass" ref={selectRef}>
-        <option value="name" defaultValue>
+        <option value="name" defaultValue="true">
           name
         </option>
         <option value="first-letter">first letter</option>

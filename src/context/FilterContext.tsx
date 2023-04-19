@@ -5,8 +5,14 @@ import { FILTER_INITIAL_STATE } from "../interfaces/filterInitialState.js";
 
 export const FilterContext = createContext();
 
-const FilterProvider = ({ children }) => {
-  const [activeFilter, setActiveFilter] = useState(FILTER_INITIAL_STATE);
+const INITIAL_VALUE: FILTER_INITIAL_STATE = {
+  filterClass: "",
+  filterBy: "",
+};
+
+const FilterProvider = ({ children }: any): any => {
+  //TODO: Tipar melhor esse State
+  const [activeFilter, setActiveFilter] = useState<any>(INITIAL_VALUE);
   const { setMeals } = useContext(MealsContext);
 
   useEffect(() => {

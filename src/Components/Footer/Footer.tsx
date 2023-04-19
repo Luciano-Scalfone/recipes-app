@@ -2,9 +2,9 @@ import { memo } from "react";
 import { GithubIcon } from "../../assets/Icons";
 import { FooterWrapper } from "./FooterStyles";
 
-export const Footer = memo(({ inHomePage }) => {
+export const Footer: React.FC = memo(() => {
   return (
-    <FooterWrapper inHomePage={inHomePage}>
+    <FooterWrapper>
       <h3>
         Powered by{" "}
         <a href="https://github.com/Luciano-Scalfone" target="_blank">

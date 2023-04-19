@@ -44,7 +44,7 @@ export const fetchByIDHelper = async (id: string): Promise<MealsType> => {
   };
 };
 
-export const fetchPostData = async <T, D>(url: string, data: D): Promise<T> => {
+export const fetchPostData = async <T extends {access_token: string}, D>(url: string, data: D): Promise<T> => {
   return await fetch(url, {
     method: "POST",
     headers: { "Content-type": "application/json; charset=UTF-8" },

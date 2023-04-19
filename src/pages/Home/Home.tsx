@@ -14,7 +14,7 @@ const Home: React.FC = () => {
     <HomeWrapper data-testid="home-component">
       <Header />
       <Body />
-      <Footer inHomePage />
+      <Footer />
       {showSigninModal && <Signin />}
       {showSignupModal && <Signup />}
     </HomeWrapper>

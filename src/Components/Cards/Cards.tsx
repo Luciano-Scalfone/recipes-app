@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { MealsContext } from "../../context/MealsContext";
+import { CardType } from "../../interfaces/filterInitialState";
 import { CardWrapper, PillWrapper } from "./CardStyles";
 
-export const Cards = ({ name, imageSrc, id, onCardClick }) => {
+export const Cards: React.FC<CardType> = ({ name, imageSrc, id, onCardClick } ) => {
   const { recipesMaked } = useContext(MealsContext);
   const [ renderPill, setRenderPill ] = useState(false);
 

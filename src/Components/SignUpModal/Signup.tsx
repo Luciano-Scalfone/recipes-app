@@ -7,12 +7,13 @@ import {
   SlashedEyeIcon,
 } from "../../assets/Icons";
 import { LoginContext } from "../../context/LoginContext";
+import { InputTargetType } from "../../interfaces/filterInitialState";
 import { fetchPostData } from "../../services/fetchs";
 import { WithModal } from "../hoc/with-modal/WithModal";
 import Input from "../Input";
 import { SignupWrapper } from "./SignupStyles";
 
-const Signup = () => {
+const Signup: React.FC = () => {
   const { setShowSignupModal, setShowSigninModal } = useContext(LoginContext);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -37,16 +38,16 @@ const Signup = () => {
     </div>
   );
 
-  const handleInputChanges = ({ target }) => {
+  const handleInputChanges = ({ target }: InputTargetType): void => {
     userRef.current = { ...userRef.current, [target.name]: target.value };
   };
 
-  const handleSigninClick = () => {
+  const handleSigninClick = (): void => {
     setShowSigninModal(true);
     setShowSignupModal(false);
   };
 
-  const handleSignUpClick = async () => {
+  const handleSignUpClick = async (): Promise<void> => {
     const { fullName, email, password } = userRef.current;
     const postUser = await fetchPostData("http://localhost:8080/auth/register", {
       fullName,

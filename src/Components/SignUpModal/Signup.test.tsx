@@ -4,7 +4,7 @@ import Signup from "./Signup";
 import MealsProvider from "../../context/MealsContext";
 
 describe("Signup Component", () => {
-  let signupComponent;
+  let signupComponent: HTMLElement;
 
   beforeEach(() => {
     signupComponent = render(
@@ -34,29 +34,35 @@ describe("Signup Component", () => {
   });
 
   test("Should have h4 like last child with text 'Already have an account? Sign in'", () => {
-    const h4Element = signupComponent.querySelector("h4:last-child");
+    const h4Element = signupComponent.querySelector(
+      "h4:last-child"
+    ) as HTMLHeadingElement;
 
     expect(h4Element).toBeInTheDocument();
     expect(h4Element.textContent).toBe("Already have an account? Sign in");
   });
 
   test("Should have span element in h4 element with text 'Sign in'", () => {
-    const h4Element = signupComponent.querySelector("h4:last-child");
-    const spanElement = h4Element.querySelector("span");
+    const h4Element = signupComponent.querySelector(
+      "h4:last-child"
+    ) as HTMLHeadingElement;
+    const spanElement = h4Element.querySelector("span") as HTMLSpanElement;
 
     expect(spanElement).toBeInTheDocument();
     expect(spanElement.textContent).toBe("Sign in");
   });
 
   test("Should have a button with text 'Create Account'", () => {
-    const buttonElement = signupComponent.querySelector("button");
+    const buttonElement = signupComponent.querySelector(
+      "button"
+    ) as HTMLButtonElement;
 
     expect(buttonElement).toBeInTheDocument();
     expect(buttonElement.textContent).toBe("Create Account");
   });
 
   describe("Full Name Input", () => {
-    let fullNameLabel;
+    let fullNameLabel: HTMLElement;
 
     beforeEach(() => {
       fullNameLabel = screen.getByTestId("full-name-label");
@@ -75,8 +81,9 @@ describe("Signup Component", () => {
     });
 
     test("Should have in input a placeholder with text 'Full Name'", () => {
-      const inputTypeTextElement =
-        fullNameLabel.querySelector("input[type=text]");
+      const inputTypeTextElement = fullNameLabel.querySelector(
+        "input[type=text]"
+      ) as HTMLInputElement;
 
       expect(inputTypeTextElement.placeholder).toBe("Full Name");
     });
@@ -89,7 +96,7 @@ describe("Signup Component", () => {
   });
 
   describe("Email Input", () => {
-    let emailLabel;
+    let emailLabel: HTMLElement;
 
     beforeEach(() => {
       emailLabel = screen.getByTestId("email-label");
@@ -108,8 +115,9 @@ describe("Signup Component", () => {
     });
 
     test("Should have in input a placeholder with text 'Email'", () => {
-      const inputTypeEmailElement =
-        emailLabel.querySelector("input[type=email]");
+      const inputTypeEmailElement = emailLabel.querySelector(
+        "input[type=email]"
+      ) as HTMLInputElement;
 
       expect(inputTypeEmailElement.placeholder).toBe("Email");
     });
@@ -122,7 +130,7 @@ describe("Signup Component", () => {
   });
 
   describe("Password Input", () => {
-    let passwordLabel;
+    let passwordLabel: HTMLElement;
 
     beforeEach(() => {
       passwordLabel = screen.getByTestId("password-label");
@@ -144,7 +152,7 @@ describe("Signup Component", () => {
     test("Should have in input a placeholder with text 'Password'", () => {
       const inputTypePasswordlElement = passwordLabel.querySelector(
         "input[type=password]"
-      );
+      ) as HTMLInputElement;
 
       expect(inputTypePasswordlElement.placeholder).toBe("Password");
     });
@@ -163,7 +171,7 @@ describe("Signup Component", () => {
     });
 
     test("Should have a OpenEye icon when user click", () => {
-      const divElement = passwordLabel.querySelector("div");
+      const divElement = passwordLabel.querySelector("div") as HTMLDivElement;
       fireEvent.click(divElement);
       const openEyeIconElement = passwordLabel.querySelector(".bi-eye");
 
@@ -172,7 +180,7 @@ describe("Signup Component", () => {
   });
 
   describe("Confirm Password Input", () => {
-    let confirmPasswordLabel;
+    let confirmPasswordLabel: HTMLElement;
 
     beforeEach(() => {
       confirmPasswordLabel = screen.getByTestId("confirm-password-label");
@@ -194,7 +202,7 @@ describe("Signup Component", () => {
     test("Should have in input a placeholder with text 'Confirm Password'", () => {
       const inputTypePasswordlElement = confirmPasswordLabel.querySelector(
         "input[type=password]"
-      );
+      ) as HTMLInputElement;
 
       expect(inputTypePasswordlElement.placeholder).toBe("Confirm Password");
     });
@@ -213,7 +221,9 @@ describe("Signup Component", () => {
     });
 
     test("Should have a OpenEye icon when user click", () => {
-      const divElement = confirmPasswordLabel.querySelector("div");
+      const divElement = confirmPasswordLabel.querySelector(
+        "div"
+      ) as HTMLDivElement;
       fireEvent.click(divElement);
       const openEyeIconElement = confirmPasswordLabel.querySelector(".bi-eye");
 

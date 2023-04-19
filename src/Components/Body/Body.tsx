@@ -4,11 +4,11 @@ import { Cards } from "../Cards/Cards";
 import { BodyWrapper } from "./BodyStyles";
 import { useNavigate } from "react-router-dom";
 
-export const Body = () => {
+export const Body: React.FC = () => {
   const { meals } = useContext(MealsContext);
   const navigate = useNavigate();
 
-  const onClickLogic = (id) => {
+  const onClickLogic = (id: string): void => {
     navigate(`/mealsDetails/${id}`);
   };
 

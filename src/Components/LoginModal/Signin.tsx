@@ -10,8 +10,9 @@ import { WithModal } from "../hoc/with-modal/WithModal";
 import Input from "../Input";
 import { SigninWrapper } from "./SigninStyles";
 import { fetchPostData } from "../../services/fetchs";
+import { InputTargetType } from "../../interfaces/filterInitialState";
 
-const Signin = () => {
+const Signin: React.FC = () => {
   const { setShowSigninModal, setShowSignupModal } = useContext(LoginContext);
   const userRef = useRef({ email: "", password: "" });
   const [showPassword, setshowPassword] = useState(false);
@@ -22,16 +23,16 @@ const Signin = () => {
     </div>
   );
 
-  const handleSignupClick = () => {
+  const handleSignupClick = (): void => {
     setShowSigninModal(false);
     setShowSignupModal(true);
   };
 
-  const handleInputChanges = ({ target }) => {
+  const handleInputChanges = ({ target }: InputTargetType): void => {
     userRef.current = { ...userRef.current, [target.name]: target.value };
   };
 
-  const handleLogInButton = async () => {
+  const handleLogInButton = async (): Promise<void> => {
     const { email, password } = userRef.current;
     const postUser = await fetchPostData("http://localhost:8080/auth/login", {
       email,
