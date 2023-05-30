@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import RecipeTitle from "../RecipeTitle/RecipeTitle";
 import { CardDetailsWrapper, DetailsWrapper } from "./CardDetailsStyles";
 import { MealType, MealsType } from "../../interfaces/types";
+import React from "react";
 
 export const CardDetails: React.FC<MealType<MealsType>> = ({ meal }) => {
   const navigateTo = useNavigate();

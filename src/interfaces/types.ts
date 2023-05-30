@@ -42,7 +42,7 @@ export type InputProps = {
   testId: string;
 };
 
-export type RecipeType = {
+export type RecipeType<MealsType> = {
   recipe: {
     name: string;
     area: string;

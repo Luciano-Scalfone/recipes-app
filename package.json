@@ -5,6 +5,7 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/user-event": "^14.4.3",
+    "@types/json-server": "^0.14.4",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
@@ -30,7 +31,7 @@
     "build": "vite build",
     "test": "vitest watch",
     "serve": "vite preview",
-    "fake-api": "node server.js"
+    "fake-api": "npx ts-node server.ts"
   },
   "eslintConfig": {
     "extends": [

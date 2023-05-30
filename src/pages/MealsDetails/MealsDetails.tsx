@@ -6,6 +6,7 @@ import { MealsDetailsWrapper } from "./MealsDetailsStyles";
 import { CardDetails } from "../../Components/CardDetails/CardDetails";
 import { fetchByIDHelper } from "../../services/fetchs";
 import { MealsType } from "../../interfaces/types";
+import React from "react";
 
 export const MealsDetails: React.FC = () => {
   const { id } = useParams();
