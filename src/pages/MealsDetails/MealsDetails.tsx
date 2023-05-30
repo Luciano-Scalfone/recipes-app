@@ -5,15 +5,18 @@ import { Footer } from "../../Components/Footer/Footer";
 import { MealsDetailsWrapper } from "./MealsDetailsStyles";
 import { CardDetails } from "../../Components/CardDetails/CardDetails";
 import { fetchByIDHelper } from "../../services/fetchs";
+import { MealsType } from "../../interfaces/types";
 
-export const MealsDetails = () => {
+export const MealsDetails: React.FC = () => {
   const { id } = useParams();
-  const [meal, setMeal] = useState({});
+  const [meal, setMeal] = useState({} as MealsType);
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      const recipe = await fetchByIDHelper(id);
-      setMeal(recipe);
+      if (id) {
+        const recipe = await fetchByIDHelper(id);
+        setMeal(recipe);
+      }
     };
 
     fetchRecipe();

@@ -7,7 +7,7 @@ import {
   SlashedEyeIcon,
 } from "../../assets/Icons";
 import { LoginContext } from "../../context/LoginContext";
-import { InputTargetType } from "../../interfaces/filterInitialState";
+import { InputTargetType } from "../../interfaces/types";
 import { fetchPostData } from "../../services/fetchs";
 import { WithModal } from "../hoc/with-modal/WithModal";
 import Input from "../Input";

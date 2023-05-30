@@ -1,9 +1,9 @@
 import { MealsDetails } from "./MealsDetails";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import renderWithRouter from "../../helpers/renderWithRouter";
 
 describe("Meals Page", () => {
-  let containerElement;
+  let containerElement: HTMLElement;
 
   beforeEach(() => {
     renderWithRouter(<MealsDetails />);

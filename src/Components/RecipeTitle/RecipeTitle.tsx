@@ -1,8 +1,10 @@
 import React from "react";
 import { RecipeTitleWrapper } from "./RecipeTitleStyles";
+import { RecipeType } from "../../interfaces/types";
 
-const RecipeTitle = ({ recipe: { name, area, category } }) => {
-
+const RecipeTitle: React.FC<RecipeType> = ({
+  recipe: { name, area, category },
+}) => {
   return (
     <RecipeTitleWrapper data-testid="recipe-title-component">
       <h1>{name}</h1>

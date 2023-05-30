@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { InputProps } from "../../interfaces/types";
 
-export const LabelWrapper = styled.label.attrs({ className: "label-wrapper" })`
+export const LabelWrapper = styled.label.attrs({
+  className: "label-wrapper",
+})`
   height: 32px;
   border: 1px solid black;
   border-radius: 5px;

@@ -4,9 +4,12 @@ import {
   handleIntruction,
   handleLink,
 } from "../helpers/fetchByIDHeHelper";
-import { MealsType } from "../interfaces/filterInitialState";
+import { MealsType } from "../interfaces/types";
 
-export const fetchAllCategories = async <T>(filterClass: string, filterBy: string): Promise<T> => {
+export const fetchAllCategories = async <T>(
+  filterClass: string,
+  filterBy: string
+): Promise<T> => {
   const { filterParams, queryParams } = fetchURLSetter(filterClass);
   let searchTerm = searchParamSetter(filterClass, filterBy);
 
@@ -39,12 +42,15 @@ export const fetchByIDHelper = async (id: string): Promise<MealsType> => {
     instructions: handleIntruction(data[0].strInstructions),
     area: data[0].strArea,
     category: data[0].strCategory,
-    ingredients: handleIngredientsAndMeasures(...data),
+    ingredients: handleIngredientsAndMeasures(data[0]),
     videoLink: handleLink(data[0].strYoutube),
   };
 };
 
-export const fetchPostData = async <T extends {access_token: string}, D>(url: string, data: D): Promise<T> => {
+export const fetchPostData = async <T extends { access_token: string }, D>(
+  url: string,
+  data: D
+): Promise<T> => {
   return await fetch(url, {
     method: "POST",
     headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -52,7 +58,10 @@ export const fetchPostData = async <T extends {access_token: string}, D>(url: st
   }).then((response) => response.json());
 };
 
-export const getUserInformation = async <T>(token: string, endPoint: string): Promise<T> => {
+export const getUserInformation = async <T>(
+  token: string,
+  endPoint: string
+): Promise<T> => {
   const response = await fetch(`http://localhost:8080/auth/user-${endPoint}`, {
     method: "GET",
     headers: {

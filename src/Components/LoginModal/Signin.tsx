@@ -10,7 +10,7 @@ import { WithModal } from "../hoc/with-modal/WithModal";
 import Input from "../Input";
 import { SigninWrapper } from "./SigninStyles";
 import { fetchPostData } from "../../services/fetchs";
-import { InputTargetType } from "../../interfaces/filterInitialState";
+import { InputTargetType } from "../../interfaces/types";
 
 const Signin: React.FC = () => {
   const { setShowSigninModal, setShowSignupModal } = useContext(LoginContext);
@@ -40,7 +40,7 @@ const Signin: React.FC = () => {
     });
 
     if (postUser.access_token) {
-      localStorage.setItem("userToken", postUser.access_token)
+      localStorage.setItem("userToken", postUser.access_token);
       setShowSigninModal(false);
     }
   };
@@ -55,6 +55,7 @@ const Signin: React.FC = () => {
         name="email"
         handleChange={handleInputChanges}
         leftIcon={<EnvelopeIcon />}
+        testId="email-input"
       />
 
       <Input
@@ -64,6 +65,7 @@ const Signin: React.FC = () => {
         handleChange={handleInputChanges}
         leftIcon={<LockIcon />}
         rightIcon={showPasswordComponent}
+        testId="password-input"
       />
 
       <button onClick={handleLogInButton}>Sign in</button>

@@ -18,6 +18,6 @@ export const handleIntruction = (meal) => {
   return splitedIntruction;
 };
 
-export const handleLink = (link) => {
+export const handleLink = (link: string) => {
   return link.split("watch?v=").join("embed/");
 };
